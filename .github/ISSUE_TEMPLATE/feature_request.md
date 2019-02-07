@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: New features
-title: "[FEAT] "
+title: "[FEAT #] "
 labels: ''
 assignees: ''
 
