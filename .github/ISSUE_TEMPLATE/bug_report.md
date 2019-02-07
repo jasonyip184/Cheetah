@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Raise issues about bugs that you cannot solve
-title: "[BUG] "
+title: "[BUG #] "
 labels: ''
 assignees: ''
 
