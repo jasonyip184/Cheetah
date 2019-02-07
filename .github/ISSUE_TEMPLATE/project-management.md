@@ -1,7 +1,7 @@
 ---
 name: Project Management
 about: Anything non-code
-title: "[PM] "
+title: "[PM #] "
 labels: ''
 assignees: ''
 
