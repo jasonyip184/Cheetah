@@ -1,6 +1,7 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="home_page">
+    <img alt="Vue logo" src="../assets/logo.png" />
+    <h1>Welcome to NUS Module Demographics</h1>
     <li>
       <b-form @submit="onSubmit">
         <b-form-group id="searchModule"
@@ -19,30 +20,33 @@
         <h1>{{ this.form.text }}</h1>
       </b-modal>
     </li>
+
+    
     <ul>
     </ul>
-    <b-card-group deck
-                  class="mb-3">
-        <b-card bg-variant="warning"
+
+
+    <b-card-group deck class="mb-3">
+        <b-card bg-variant="secondary"
                 text-variant="white"
                 header="Course"
                 class="text-center">
-            <p class="card-text">View course statistics</p>
-            <b-button href="#/about" variant="primary">Go somewhere</b-button>
+            <p class="card-text">Discover the modules students from your course are taking. Wouldn't it be great to know whether you're following the same path as your seniors? It's good to know that you are special sometimes too!</p>
+            <b-button href="#/course" variant="primary">View course statistics</b-button>
         </b-card>
         <b-card bg-variant="danger"
                 text-variant="white"
                 header="Batch"
                 class="text-center">
-            <p class="card-text">View batch statistics</p>
-            <b-button href="#/about" variant="primary">Go somewhere</b-button>
+            <p class="card-text">Ever wondered what modules your batchmates across faculties are taking? Plan your GEMs or unresticted electives.</p>
+            <b-button href="#/batch" variant="primary">View batch statistics</b-button>
         </b-card>
         <b-card bg-variant="success"
                 text-variant="white"
                 header="Industry"
                 class="text-center">
-            <p class="card-text">View modules associated with industry</p>
-            <b-button href="#/about" variant="primary">Go somewhere</b-button>
+            <p class="card-text">Wanna know what modules the alumni students have taken? We think it's best that you find out what modules your seniors have taken especially if they are in an industry you are interested in.</p>
+            <b-button href="#/industry" variant="primary">View modules associated with industry</b-button>
         </b-card>
     </b-card-group>
   </div>
@@ -61,7 +65,7 @@
         evt.preventDefault()
       }
     },
-    name: "HelloWorld",
+    name: "home",
     props: {
       msg: String
     }
