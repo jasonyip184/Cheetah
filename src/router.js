@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Course from "./views/Course.vue";
 import Batch from "./views/Batch.vue";
 import Industry from "./views/Industry.vue";
+import About from "./views/About.vue";
 
 Vue.use(Router);
 
@@ -28,6 +29,11 @@ export default new Router({
       path: "/industry",
       name: "industry",
       component: Industry
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: About
     },
   ]
 });

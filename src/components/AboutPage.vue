@@ -1,6 +1,9 @@
 <template>
-  <div class="industry_page">
-    <h1>Industry Page</h1>
+  <div class="about_page">
+    <p>NUS Module Demographics is a web application designed to be complementary
+                to existing module planners such as NUSMods and NUSTimetable Builder.
+                We intend for this to app to be fit in together with NUS' official timetable builder.
+                Feedback and suggestions on improvements to the app are more than welcome!</p>
     <br/><br/><br/>
     <Footer/>
   </div>
@@ -9,7 +12,7 @@
 <script>
   import Footer from "@/components/Footer.vue";
   export default {
-    name: "industry",
+    name: "batch",
     props: {
       msg: String
     },

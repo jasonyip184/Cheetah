@@ -1,14 +1,20 @@
 <template>
   <div class="course_page">
     <h1>Course Page</h1>
+    <br/><br/><br/>
+    <Footer/>
   </div>
 </template>
 
 <script>
+  import Footer from "@/components/Footer.vue";
   export default {
     name: "course",
     props: {
       msg: String
+    },
+    components: {
+      Footer
     }
   };
 </script>

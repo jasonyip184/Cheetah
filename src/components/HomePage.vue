@@ -2,6 +2,7 @@
   <div class="home_page">
     <img alt="Vue logo" src="../assets/logo.png" />
     <h1>Welcome to NUS Module Demographics</h1>
+    <br/>
     <li>
       <b-form @submit="onSubmit">
         <b-form-group id="searchModule"
@@ -21,10 +22,7 @@
       </b-modal>
     </li>
 
-    
-    <ul>
-    </ul>
-
+    <ul /><br />
 
     <b-card-group deck class="mb-3">
         <b-card bg-variant="secondary"
@@ -49,10 +47,13 @@
             <b-button href="#/industry" variant="primary">View modules associated with industry</b-button>
         </b-card>
     </b-card-group>
+    <br/><br/><br/>
+    <Footer/>
   </div>
 </template>
 
 <script>
+  import Footer from "@/components/Footer.vue";
   export default {
     data() {
       return {
@@ -68,6 +69,9 @@
     name: "home",
     props: {
       msg: String
+    },
+    components: {
+      Footer
     }
   };
 </script>

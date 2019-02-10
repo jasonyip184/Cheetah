@@ -1,14 +1,20 @@
 <template>
   <div class="batch_page">
     <h1>Batch page</h1>
+    <br/><br/><br/>
+    <Footer/>
   </div>
 </template>
 
 <script>
+  import Footer from "@/components/Footer.vue";
   export default {
     name: "batch",
     props: {
       msg: String
+    },
+    components: {
+      Footer
     }
   };
 </script>
