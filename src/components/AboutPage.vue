@@ -13,9 +13,6 @@
   import Footer from "@/components/Footer.vue";
   export default {
     name: "batch",
-    props: {
-      msg: String
-    },
     components: {
       Footer
     }

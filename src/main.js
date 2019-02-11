@@ -7,10 +7,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import VPopover from 'vue-js-popover'
+import VueFire from 'vuefire'
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
-Vue.use(Vuetify)
+Vue.use(Vuetify);
+Vue.use(VPopover, { tooltip: true })
+Vue.use(VueFire)
 
 new Vue({
   router,

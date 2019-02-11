@@ -10,9 +10,6 @@
   import Footer from "@/components/Footer.vue";
   export default {
     name: "industry",
-    props: {
-      msg: String
-    },
     components: {
       Footer
     }

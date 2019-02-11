@@ -1,6 +1,6 @@
 <template>
   <div class="home_page">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img alt="Vue logo" src="../assets/nusmainlogo.jpg" height=300px/>
     <h1>Welcome to NUS Module Demographics</h1>
     <br/>
     <li>
@@ -67,9 +67,6 @@
       }
     },
     name: "home",
-    props: {
-      msg: String
-    },
     components: {
       Footer
     }
