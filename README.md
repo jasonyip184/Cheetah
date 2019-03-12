@@ -9,9 +9,9 @@
 6. Push your new branch up and create a pull request to merge back to branch you previously pulled from.
 
 
-## If it is your first time cloning or pulling, make sure you npm install
+## If it is your first time cloning or pulling or you do not have the node_modules folder in Cheetah
 ```
-cd cheetah
+cd Cheetah
 npm install
 ```
 ### Run this to compile and hot-reload for development
