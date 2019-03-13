@@ -1,16 +1,18 @@
 <template>
   <div class="industry_page">
     <h1>Industry Page</h1>
-    <br/><br/><br/>
+    <DataTable/>
     <Footer/>
   </div>
 </template>
 
 <script>
   import Footer from "@/components/Footer.vue";
+  import DataTable from "@/components/DataTable.vue";
   export default {
     name: "industry",
     components: {
+      DataTable,
       Footer
     }
   };
