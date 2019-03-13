@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Course from "./views/Course.vue";
-import Batch from "./views/Batch.vue";
+import ModType from "./views/ModType.vue";
 import Industry from "./views/Industry.vue";
 import About from "./views/About.vue";
 
@@ -21,9 +21,9 @@ export default new Router({
       component: Course
     },
     {
-      path: "/batch",
-      name: "batch",
-      component: Batch
+      path: "/modtype",
+      name: "modtype",
+      component: ModType
     },
     {
       path: "/industry",

@@ -1,20 +1,7 @@
 <template>
   <div class="course_page">
     <h1>Course Page</h1>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Module Code</th>
-          <th>Final Grade</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr v-for="item of items" :key="item['.key']">
-            <td>{{ item.module_code }}</td>
-            <td>{{ item.final_grade }}</td>
-          </tr>
-      </tbody>
-    </table>
+    <DataTable/>
     <br/><br/><br/>
     <Footer/>
   </div>
@@ -23,6 +10,7 @@
 <script>
   import Footer from "@/components/Footer.vue";
   import {module_enrolment} from '../firebase';
+  import DataTable from "@/components/DataTable.vue";
 
   export default {
     name: "course",
@@ -35,6 +23,7 @@
       items: module_enrolment
     },
     components: {
+      DataTable,
       Footer
     },
   };

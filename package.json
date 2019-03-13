@@ -19,6 +19,7 @@
     "vue-js-popover": "^1.1.8",
     "vue-loader": "^15.6.2",
     "vue-router": "^3.0.1",
+    "vue-tables-2": "^1.4.70",
     "vuefire": "^1.4.5",
     "vuelidate": "^0.7.4",
     "vuetify": "^1.5.0",
