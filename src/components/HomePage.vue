@@ -1,8 +1,6 @@
 <template>
   <div class="home_page">
-    <img alt="Vue logo" src="../assets/nusmainlogo.jpg" height=300px/>
-    <h1>Welcome to NUS Module Demographics</h1>
-    <br/>
+    <div v-html="legacySystemHTML"></div>
     <li>
       <b-form @submit="onSubmit">
         <b-form-group id="searchModule"
@@ -16,7 +14,7 @@
         </b-form-group>
         <b-button type="submit" variant="primary" @click="modalShow = !modalShow">Submit</b-button>
       </b-form>
-      
+
       <b-modal v-model="modalShow">
         <h1>{{ this.form.text }}</h1>
       </b-modal>
@@ -37,7 +35,7 @@
                 header="Batch"
                 class="text-center">
             <p class="card-text">Ever wondered what modules your batchmates across faculties are taking? Plan your GEMs or unresticted electives.</p>
-            <b-button href="#/batch" variant="primary">View batch statistics</b-button>
+            <b-button href="#/modtype" variant="primary">View batch statistics</b-button>
         </b-card>
         <b-card bg-variant="success"
                 text-variant="white"
@@ -58,7 +56,82 @@
     data() {
       return {
         form: {},
-        modalShow: false
+        modalShow: false,
+        legacySystemHTML: `
+        <section class="banner full">
+				<article class="slide">
+					<img src="https://www.nicholaswan.me/images/cheetah/computing.png" alt="" />
+					<div class="inner">
+						<header>
+							<p><a href="#">View modules done by seniors in your faculty</a></p>
+							<h2>Faculty</h2>
+
+						</header>
+						<button class="button"> <a href="#/course">View Page</a> </button>
+					</div>
+				</article>
+				<article class="slide2 slide" >
+					<img src="https://www.nicholaswan.me/images/cheetah/arts.png" alt="" />
+					<div class="inner">
+						<header>
+							<p>View modules by type (e.g language, GE modules)</p>
+							<h2>Module Type</h2>
+						</header>
+						<button class="button"> <a href="#/modtype">Find out More</a> </button>
+
+					</div>
+				</article>
+				<article class="slide">
+					<img src="https://www.nicholaswan.me/images/cheetah/industry.png"  alt="" />
+					<div class="inner">
+						<header>
+							<p>View modules taken by graduates in an industry</p>
+							<h2>Industry</h2>
+						</header>
+						<button class="button"> <a href="#/industry">Click Here</a> </button>
+
+					</div>
+				</article>
+			</section>
+      <section id="one" class="wrapper style2">
+				<div class="inner">
+					<header class="align-center">
+
+					<h2> How to Use </h2>
+					<p> Visit one of the three category pages</p>
+
+				<div class="row">
+				<div class="col-md-3">
+					<div class="minibox">
+					<i class="fas fa-school icons2"></i>
+					<h2>Faculty Page</h2>
+					<p>Get to know when your seniors have completed a module to find out if you are taking a module too early or too late </p>
+
+				</div>
+				</div>
+				<div class="col-md-3">
+					<div class="minibox">
+					<i class="fas fa-book icons2"></i>
+					<h2>Module Type Page</h2>
+					<p> Want to take a Language or GE module but not sure of the options? Click here to help you make your decision!</p>
+				</div>
+				</div>
+				<div class="col-md-3">
+					<div class="minibox">
+						<i class="fas fa-industry icons2"></i>
+						<h2>Industry Page</h2>
+						<p> Find out which modules will teach you useful knowledge and skills required to work in an Industry. </p>
+				</div>
+				</div>
+				</div>
+					</div>
+				</header>
+
+
+				</div>
+			</section>
+      `
+
       }
     },
     methods: {
