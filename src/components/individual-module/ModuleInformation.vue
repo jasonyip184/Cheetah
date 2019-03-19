@@ -72,7 +72,6 @@ export default {
       <body class="paragraph">
         <p class="text-justify">
           {{description}}
-          {{trya}}
         </p>
       </body>
 
