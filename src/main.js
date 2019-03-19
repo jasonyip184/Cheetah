@@ -11,6 +11,9 @@ import VPopover from 'vue-js-popover';
 import VueFire from 'vuefire';
 import { ClientTable } from 'vue-tables-2';
 
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.use(Vuetify);
