@@ -12,7 +12,7 @@
                         required
                         placeholder="Enter module code" />
         </b-form-group>
-        <b-button type="submit" variant="primary" @click="modalShow = !modalShow">Submit</b-button>
+        <b-button id="submitbutton" type="submit" variant="primary" @click="modalShow = !modalShow">Submit</b-button>
       </b-form>
 
       <b-modal v-model="modalShow">
@@ -28,7 +28,7 @@
                 header="Course"
                 class="text-center">
             <p class="card-text">Discover the modules students from your course are taking. Wouldn't it be great to know whether you're following the same path as your seniors? It's good to know that you are special sometimes too!</p>
-            <b-button href="#/course" variant="primary">View course statistics</b-button>
+            <b-button id="coursebutton" href="#/course" variant="primary">View course statistics</b-button>
         </b-card>
         <b-card bg-variant="danger"
                 text-variant="white"
@@ -46,7 +46,11 @@
         </b-card>
     </b-card-group>
     <br/><br/><br/>
+
     <Footer/>
+
+    <v-tour name="myTour" :steps="steps"></v-tour>
+
   </div>
 </template>
 
@@ -55,6 +59,23 @@
   export default {
     data() {
       return {
+        steps: [
+          {
+            target: '#submitbutton',  // We're using document.querySelector() under the hood
+            content: `Use this as a tour`
+          },
+          {
+            target: '#coursebutton',
+            content: 'Bring directly to elements with ids'
+          },
+          {
+            target: '[data-v-step="2"]',
+            content: 'Try it, you\'ll love it!<br>You can put HTML in the steps and completely customize the DOM to suit your needs.',
+            params: {
+              placement: 'top'
+            }
+          }
+        ],
         form: {},
         modalShow: false,
         legacySystemHTML: `
@@ -133,6 +154,9 @@
       `
 
       }
+    },
+    mounted: function () {
+      this.$tours['myTour'].start()
     },
     methods: {
       onSubmit(evt) {

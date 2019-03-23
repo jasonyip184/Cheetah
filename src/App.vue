@@ -16,6 +16,7 @@
         </b-collapse>
       </b-navbar> -->
     <router-view />
+    <VPageGuide v-model="showGuide"/>
   </div>
 </template>
 

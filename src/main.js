@@ -12,8 +12,10 @@ import VueFire from 'vuefire';
 import { ClientTable } from 'vue-tables-2';
 import "ag-grid-enterprise";
 import {LicenseManager} from "ag-grid-enterprise";
+import VueTour from 'vue-tour';
 
 LicenseManager.setLicenseKey("Evaluation_License-_Not_For_Production_Valid_Until_25_May_2019__MTU1ODczODgwMDAwMA==156057ec2a5212d3fc17b2c425718067");
+require('vue-tour/dist/vue-tour.css')
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
@@ -21,6 +23,7 @@ Vue.use(Vuetify);
 Vue.use(VPopover, { tooltip: true });
 Vue.use(VueFire);
 Vue.use(ClientTable);
+Vue.use(VueTour);
 
 new Vue({
   router,
