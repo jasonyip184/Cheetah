@@ -1,7 +1,8 @@
 <template>
   <div class="home_page">
-    <img alt="Vue logo" src="../assets/nusmainlogo.jpg" height=300px/>
-    <h1>Welcome to NUS Module Demographics</h1>
+    <img alt="Vue logo" src="../assets/computing.jpg" height=500px/>
+    <br></br>
+    <h1>Welcome to Modules+</h1>
     <br/>
     <li>
       <b-form @submit="onSubmit">

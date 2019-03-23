@@ -1,18 +1,18 @@
 <template>
   <div class="modtype">
     <h1>Module Type Page</h1>
-    <DataTable/>
+    <ModuleTypeDataTable/>
     <Footer/>
   </div>
 </template>
 
 <script>
   import Footer from "@/components/Footer.vue";
-  import DataTable from "@/components/DataTable.vue";
+  import ModuleTypeDataTable from "@/components/ModuleTypeDataTable.vue";
   export default {
     name: "modtype",
     components: {
-      DataTable,
+      ModuleTypeDataTable,
       Footer
     }
   };

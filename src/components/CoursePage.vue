@@ -1,7 +1,7 @@
 <template>
   <div class="course_page">
     <h1>Course Page</h1>
-    <DataTable/>
+    <CourseDataTable/>
     <br/><br/><br/>
     <Footer/>
   </div>
@@ -10,7 +10,7 @@
 <script>
   import Footer from "@/components/Footer.vue";
   import {module_enrolment} from '../firebase';
-  import DataTable from "@/components/DataTable.vue";
+  import CourseDataTable from "@/components/CourseDataTable.vue";
 
   export default {
     name: "course",
@@ -23,7 +23,7 @@
       items: module_enrolment
     },
     components: {
-      DataTable,
+      CourseDataTable,
       Footer
     },
   };
