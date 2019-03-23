@@ -10,6 +10,10 @@ import 'vuetify/dist/vuetify.min.css';
 import VPopover from 'vue-js-popover';
 import VueFire from 'vuefire';
 import { ClientTable } from 'vue-tables-2';
+import "ag-grid-enterprise";
+import {LicenseManager} from "ag-grid-enterprise";
+
+LicenseManager.setLicenseKey("Evaluation_License-_Not_For_Production_Valid_Until_25_May_2019__MTU1ODczODgwMDAwMA==156057ec2a5212d3fc17b2c425718067");
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);

@@ -6,7 +6,15 @@
       <router-link to="/modtype">Module Type</router-link> |
       <router-link to="/industry">Industry</router-link> |
       <router-link to="/about">About</router-link>
-    </div> -->
+    </div>
+      <!-- <b-navbar toggleable="lg" type="dark" variant="info" class="customnav">
+        <b-navbar-brand><b-link to="/" class="navbar-brand">Modules+</b-link></b-navbar-brand>
+
+        <b-navbar-toggle target="nav_collapse" />
+
+        <b-collapse is-nav id="nav_collapse">
+        </b-collapse>
+      </b-navbar> -->
     <router-view />
   </div>
 </template>
