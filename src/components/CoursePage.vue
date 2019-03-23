@@ -13,6 +13,7 @@
 
       <b-row align-h="center" class="description">
         <b-col cols="9">Discover modules other students from your (or any other) course are taking.<br/>Know what are the popular modules your seniors completed, and plan to take them together with your friends.
+
         </b-col>
       </b-row>
 
@@ -78,8 +79,8 @@
   import {module_enrolment} from '../firebase';
   import DataTable from "@/components/DataTable.vue";
 
-  import { FormSelect } from 'bootstrap-vue/es/components/form-select'
-  import { Popover } from 'bootstrap-vue/es/directives/popover' //need to import this for tooltip
+  //import { FormSelect } from 'bootstrap-vue/es/components/form-select'
+  //import { Popover } from 'bootstrap-vue/es/directives/popover' //need to import this for tooltip
 
   export default {
     name: "course",

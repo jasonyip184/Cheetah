@@ -1,16 +1,7 @@
 <script>
-//Have to import json data or wherever is our individual module data source
-//e.g. import json_data from './indiv-mod-data.json'
 
-import Vue from 'vue';
-import VueFusionCharts from 'vue-fusioncharts';
-import FusionCharts from 'fusioncharts';
-import Column2D from 'fusioncharts/fusioncharts.charts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import Layout from 'bootstrap-vue/es/components/layout';
+import jsondata from '@/data/module_data.json';
 
-Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme);
-Vue.use(Layout);
 
 export default {
     name: 'year-chart',
@@ -19,12 +10,14 @@ export default {
     },
     data () {
         return {
-            "renderAt": "chart-container",
-            "width": "100%",
-            "height": "360",
-            "dataFormat": "json",
-            "type": "column2d", //"pie2d",
-            "datasource": {
+            code: this.code,
+            moduledata: jsondata,
+            renderAt: "chart-container",
+            width: "100%",
+            height: "360",
+            dataFormat: "json",
+            type: "column2d", //"pie2d",
+            datasource: {
                 "chart": {
                     "caption": "Year of Study",
                     "subCaption": "Others: Exchange Students, Non-Undergrads, etc.",
@@ -32,6 +25,8 @@ export default {
                     "chartTopMargin": "16",
                     "showPercentValues": "1",
                     "showLegend": "0",
+                    "showpercentvalues": "1",
+                    "plottooltext": "<b>$label</b>, $percentValue",
                     "theme": "fusion",
                     "bgColor": "#FAF8EA",
                     "bgAlpha": "40",
@@ -49,22 +44,7 @@ export default {
       fillData() {
         // this is where we will query the imported (json) data with the module code prop for the appropriate data
         //Replace below line with query result using module code prop, FIT THIS FORMAT (list of jsons)
-        this.datasource.data = [{
-            "label": "Year 1",
-            "value": "1523"
-        }, {
-            "label": "Year 2",
-            "value": "1433"
-        }, {
-            "label": "Year 3",
-            "value": "2507"
-        }, {
-            "label": "Year 4",
-            "value": "1433"
-        }, {
-            "label": "Others",
-            "value": "257"
-        }];
+        this.datasource.data = this.moduledata[this.code]['Year'];
       },
     }
 }

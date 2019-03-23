@@ -1,16 +1,7 @@
 <script>
-//Have to import json data or wherever is our individual module data source
-//e.g. import json_data from './indiv-mod-data.json'
 
-import Vue from 'vue';
-import VueFusionCharts from 'vue-fusioncharts';
-import FusionCharts from 'fusioncharts';
-import Column2D from 'fusioncharts/fusioncharts.charts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import Layout from 'bootstrap-vue/es/components/layout';
+import jsondata from '@/data/module_data.json';
 
-Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme);
-Vue.use(Layout);
 
 export default {
     name: 'req-chart',
@@ -19,12 +10,14 @@ export default {
     },
     data () {
         return {
-            "renderAt": "chart-container",
-            "width": "100%",
-            "height": "360",
-            "dataFormat": "json",
-            "type": "pie2d",
-            "datasource": {
+            code: this.code,
+            moduledata: jsondata,
+            renderAt: "chart-container",
+            width: "100%",
+            height: "360",
+            dataFormat: "json",
+            type: "pie2d",
+            datasource: {
                 "chart": {
                     "caption": "Fulfilled Requirements",
                     "subCaption": "Core: Module was completed as part of a major's requirements <br /> Unrestricted Elective: Completed as a non-Core module",
@@ -33,6 +26,7 @@ export default {
                     "showpercentvalues": "1",
                     "showLegend": "0",
                     "labelSepChar": "<br />",
+                    "plottooltext": "<b>$label</b>, $value",
                     "theme": "fusion",
                     "bgColor": "#FAF8EA",
                     "bgAlpha": "40",
@@ -49,13 +43,7 @@ export default {
       fillData() {
         // this is where we will query the imported (json) data with the module code prop for the appropriate data
         //Replace below line with query result using module code prop, FIT THIS FORMAT (list of jsons)
-        this.datasource.data = [{
-            "label": "Core",
-            "value": "15123"
-        }, {
-            "label": "Unrestricted Elective",
-            "value": "14233"
-        }];
+        this.datasource.data = this.moduledata[this.code]['Fulfilled Requirements'];
       },
     }
 }

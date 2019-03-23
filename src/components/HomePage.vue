@@ -3,6 +3,43 @@
     <img alt="Vue logo" src="../assets/nusmainlogo.jpg" height=300px/>
     <h1>Welcome to NUS Module Demographics</h1>
     <br/>
+
+    <!-- Use this whole chunk for the module input field -->
+    <b-container fluid class="content">
+      <b-row align-h="center">
+        <b-col cols="3">
+          <b-input-group>
+
+            <b-form-input
+              id="inputModuleCode"
+              v-model="code"
+              trim
+              type="text"
+              :state="checkModuleCode"
+              aria-describedby="inputLiveHelp inputLiveFeedback"
+              placeholder="Enter Module Code"
+            />
+            <b-input-group-append>
+              <router-link :to="{ name: 'module', params: { code } }">
+                <b-button :disabled="isInvalidInput" variant="dark">Search</b-button>
+              </router-link>
+            </b-input-group-append>
+
+            <!-- This will only be shown if the preceeding input has an invalid state -->
+            <b-form-invalid-feedback id="inputLiveFeedback">
+              Invalid Module Code
+            </b-form-invalid-feedback>
+
+          </b-input-group>
+        </b-col>
+      </b-row>
+    </b-container>
+    <!-- COPY till here, also copy data() parts and computed checkModuleCode() function -->
+
+    <br/>
+    <br/>
+    <br/>
+
     <li>
       <b-form @submit="onSubmit">
         <b-form-group id="searchModule"
@@ -16,7 +53,7 @@
         </b-form-group>
         <b-button type="submit" variant="primary" @click="modalShow = !modalShow">Submit</b-button>
       </b-form>
-      
+
       <b-modal v-model="modalShow">
         <h1>{{ this.form.text }}</h1>
       </b-modal>
@@ -54,9 +91,14 @@
 
 <script>
   import Footer from "@/components/Footer.vue";
+  import jsondata from '@/data/module_data.json';
+
   export default {
     data() {
       return {
+        modulelist: jsondata['modulelist'], //copy this
+        isInvalidInput: true, //copy this
+        code: '', //copy this
         form: {},
         modalShow: false
       }
@@ -64,7 +106,24 @@
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-      }
+      },
+    },
+    computed: {
+      checkModuleCode() {
+        if (this.code.length == 0) {
+          return 'null'
+        }
+        else {
+          if (this.modulelist.includes(this.code)){
+            this.isInvalidInput = false
+            return true
+          }
+          else{
+            this.isInvalidInput = true
+            return false
+          }
+        }
+      },
     },
     name: "home",
     components: {

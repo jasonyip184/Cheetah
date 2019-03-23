@@ -1,66 +1,69 @@
 
 
 <script>
-//Have to import json data or wherever is our individual module data source
-//e.g. import json_data from './indiv-mod-data.json'
-
-import Vue from 'vue'
-import HighchartsVue from 'highcharts-vue'
-import { Layout } from 'bootstrap-vue/es/components'
-import { Button } from 'bootstrap-vue/es/components/button'
-import breakdown from '@/components/individual-module/ModuleBreakdown.vue'
-
-Vue.use(HighchartsVue);
-Vue.use(Layout);
-
+import jsondata from '@/data/module_data.json';
 
 export default {
   name: 'Overview',
   props: {
     code: String,
     description: String,
-    lessons: Array
+    lessons: Array,
   },
-  components: {
-    'module-breakdown': breakdown,
+  mounted() {
+    this.fillDescriptionData();
   },
   data () {
     return {
-      "breakdownData": null,
-      "breakdownColors": ['#F0E4C9', '#EACEC2', '#C6DBB9', '#ACBED8'],
-      "chartOptions": {
-        chart: {type: 'pie',
-                height: '60%',
-        },
-        tooltip: {pointFormat: '<b>{point.percentage:.0f}%</b>'},
-        plotOptions: {
-              pie: {dataLabels: {enabled: true,
-                                 distance: -30,
-                                 style: {fontSize: '11px',
-                                         fontWeight: 'bold',
-                                         color: '#424242',
-                                         textOutline: 'none',
-                                         crop: false,
-                                         overflow: "allow",
-                                       }
-                                },
-                    startAngle: -90,
-                    endAngle: 90,
-                    innerSize: '40%',
-                    center: ['50%', '80%'],
-                    size: '150%'
-              }
-        },
-        title: {text: undefined},
-        legend: {enabled: true,
-                 verticalAlign: "top",
-                 align: "center",
-        },
-        series: null,
+      code: this.code,
+      description: this.description,
+      lessons: this.lessons,
+      moduledata: jsondata,
+      renderAt: "chart-container",
+      width: "100%",
+      height: "300",
+      dataFormat: "json",
+      type: "doughnut2d",
+      datasource: {
+          "chart": {
+              "captionPadding": "0",
+              "chartTopMargin": "0",
+              "alignCaptionWithCanvas": "1",
+              "captionHorizontalPadding": "2",
+              "captionOnTop": "0",
+              "captionAlignment": "right",
+              "showLabels": "0",
+              "showValues": "0",
+              "showpercentvalues": "1",
+              "captionpadding": "0",
+              "decimals": "1",
+              "paletteColors": ['#F0E4C9', '#EACEC2', '#C6DBB9', '#ACBED8'],
+              "showZeroPies": "0",
+              "manageLabelOverflow": "1",
+              "doughnutRadius" : "30",
+              "plottooltext": "<b>$label</b>, $percentValue",
+              "defaultcenterlabel": "",
+              "centerLabelFontSize": "16",
+              "centerlabel": "$percentValue",
+              "theme": "fusion",
+              "showLegend": "1",
+              "legendItemFontSize": "12",
+              //"bgColor": "#FAF8EA",
+              //"bgAlpha": "40",
 
+          },
+          "data": null,
       },
     }
   },
+  methods:{
+      newTab: function () {
+          window.open("https://nusmods.com/modules/" + this.code);
+      },
+      fillDescriptionData() {
+        this.datasource.data = this.moduledata[this.code]['Breakdown']
+      },
+    }
 }
 </script>
 
@@ -68,6 +71,7 @@ export default {
 
   <div class="box">
     <div class="left">
+
       <h1 class="Title">Overview</h1>
       <body class="paragraph">
         <p class="text-justify">
@@ -159,7 +163,7 @@ export default {
         </b-row>
 
         <b-row align-h="end" class="button">
-          <b-button size="sm" variant="outline-primary" :href="'https://nusmods.com/modules/' + code">Add to timetable in NUSMods</b-button>
+          <b-button size="sm" variant="outline-primary" @click="newTab">Add to timetable in NUSMods</b-button>
         </b-row>
 
       </b-container>
@@ -167,10 +171,17 @@ export default {
 
       <h1 class="Title">Assessment Breakdown</h1>
       <div class="chartContainer">
-        <module-breakdown v-bind:code="code"></module-breakdown>
+        <fusioncharts
+          :type="type"
+          :width="width"
+          :height="height"
+          :dataformat="dataformat"
+          :datasource="datasource"
+          >
+        </fusioncharts>
       </div>
-    </div>
 
+    </div>
   </div>
 
 </template>

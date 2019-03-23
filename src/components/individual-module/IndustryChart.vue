@@ -1,16 +1,7 @@
 <script>
-//Have to import json data or wherever is our individual module data source
-//e.g. import json_data from './indiv-mod-data.json'
 
-import Vue from 'vue';
-import VueFusionCharts from 'vue-fusioncharts';
-import FusionCharts from 'fusioncharts';
-import Column2D from 'fusioncharts/fusioncharts.charts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import Layout from 'bootstrap-vue/es/components/layout';
+import jsondata from '@/data/module_data.json';
 
-Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme);
-Vue.use(Layout);
 
 export default {
     name: 'ind-chart',
@@ -19,12 +10,14 @@ export default {
     },
     data () {
         return {
-            "renderAt": "chart-container",
-            "width": "100%",
-            "height": "360",
-            "dataFormat": "json",
-            "type": "doughnut2d",
-            "datasource": {
+            code: this.code,
+            moduledata: jsondata,
+            renderAt: "chart-container",
+            width: "100%",
+            height: "360",
+            dataFormat: "json",
+            type: "doughnut2d",
+            datasource: {
                 "chart": {
                     "caption": "Employed Industry",
                     "subCaption": "Only representative of last year's GES respondents",
@@ -35,7 +28,7 @@ export default {
                     "aligncaptionwithcanvas": "0",
                     "captionpadding": "0",
                     "decimals": "1",
-                    //"manageLabelOverflow": "1",
+                    "manageLabelOverflow": "1",
                     "doughnutRadius" : "25",
                     "plottooltext": "<b>$percentValue</b> of respondent graduates work in <b>$label</b>",
                     "centerlabel": "$value", //"# Graduates: $value",
@@ -57,7 +50,7 @@ export default {
       fillData() {
         // this is where we will query the imported (json) data with the module code prop for the appropriate data
         //Replace below line with query result using module code prop, FIT THIS FORMAT (list of jsons)
-        this.datasource.data = [{
+        this.datasource.data = this.moduledata[this.code]['Industry']/**[{
             "label": "Healthcare",
             "value": "1323"
         }, {
@@ -66,7 +59,7 @@ export default {
         }, {
             "label": "Transport",
             "value": "2107"
-        }];
+        }]**/;
       },
     }
 }

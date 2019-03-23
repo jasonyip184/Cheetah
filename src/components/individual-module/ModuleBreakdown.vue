@@ -6,6 +6,7 @@
 
 import Vue from 'vue'
 import HighchartsVue from 'highcharts-vue'
+import jsondata from '@/data/module_data.json';
 
 Vue.use(HighchartsVue);
 
@@ -14,14 +15,18 @@ export default {
   name: 'Overview',
   props: {
     code: String,
-    description: String,
-    lessons: Array
+    breakdown: Array,
+    seriesa: Array,
   },
   data () {
     return {
-      "breakdownData": null,
-      "breakdownColors": ['#F0E4C9', '#EACEC2', '#C6DBB9', '#ACBED8'],
-      "chartOptions": {
+      code: this.code,
+      breakdown: this.breakdown,
+      seriesa: this.seriesa,
+      breakdownData: [['Assignments', 90],['Class Participation', 100],['Project Work', 30],['Exams', 40]],//this.breakdown,
+      breakdownF: [{ y: 40, name: "Point2"},{ y: 30, name: "Point2"},{ y: 10, name: "Point2"}],
+      breakdownColors: ['#F0E4C9', '#EACEC2', '#C6DBB9', '#ACBED8'],
+      chartOptions: {
         chart: {type: 'pie',
                 height: '60%',
         },
@@ -49,25 +54,33 @@ export default {
                  verticalAlign: "top",
                  align: "center",
         },
-        series: null,
+        series: this.seriea,
+        //series: null,
+        //series: [{
+        //      data: [{ y: 40, name: "Point2"},{ y: 30, name: "Point2"},{ y: 10, name: "Point2"}],// this.breakdownData,//[['Assignments', 20],['Class Participation', 10],['Project Work', 30],['Exams', 40]],//[['Assignments', 20],['Class Participation', 10],['Project Work', 30],['Exams', 40]],//this.breakdownData,
+        //      colors: ['#F0E4C9', '#EACEC2', '#C6DBB9', '#ACBED8']
+        //}]
 
       },
     }
   },
   mounted() {
+    //this.getData()
     this.fillData()
   },
   methods: {
     fillData() {
-      this.chartOptions.series = this.getData()
+      this.chartOptions.series = this.putData()
+      //this.chartOptions.series.data = this.breakdown
+      //this.chartOptions.series.colors = this.breakdownColors
     },
 
-    getData() {
+    putData() {
       //HAVE to replace 0 values with null when preparing json to avoid plotting 0 values, try changing to 0 or null
       //Replace below line with query result using module code prop, FIT THIS FORMAT list of [String, Int] lists)
-      this.breakdownData = [['Assignments', 20],['Class Participation', 10],['Project Work', 30],['Exams', 40]]
+      //this.breakdownData = this.moduledata[this.code]['Breakdown']//[['Assignments', 20],['Class Participation', 10],['Project Work', 30],['Exams', 40]] //this.moduledata[this.code]['Breakdown']//
       return {
-            data: this.breakdownData,
+            data: this.breakdown,//[['Assignments', 20],['Class Participation', 10],['Project Work', 30],['Exams', 40]],//this.breakdownData,
             colors: this.breakdownColors
       }
     },
@@ -79,6 +92,8 @@ export default {
 
   <div class="box">
     <div class="chartContainer">
+      {{breakdown}}
+      <!-- {{seriesa}} -->
       <highcharts class="chart" :options="chartOptions"></highcharts>
     </div>
   </div>

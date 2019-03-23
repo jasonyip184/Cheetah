@@ -1,17 +1,6 @@
 <script>
-//Have to import json data or wherever is our individual module data source
-//e.g. import json_data from './indiv-mod-data.json'
 
-import Vue from 'vue';
-import VueFusionCharts from 'vue-fusioncharts';
-import FusionCharts from 'fusioncharts';
-import Column2D from 'fusioncharts/fusioncharts.charts';
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import Layout from 'bootstrap-vue/es/components/layout';
-
-Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme);
-Vue.use(Layout);
-
+import jsondata from '@/data/module_data.json';
 
 
 export default {
@@ -21,19 +10,22 @@ export default {
     },
     data () {
         return {
-            "renderAt": "chart-container",
-            "width": "100%",
-            "height": "360",
-            "dataFormat": "json",
-            "type": "pie2d",
-            "datasource": {
+            code: this.code,
+            moduledata: jsondata,
+            renderAt: "chart-container",
+            width: "100%",
+            height: "360",
+            dataFormat: "json",
+            type: "pie2d",
+            datasource: {
                 "chart": {
                     "caption": "Faculty / Major Segmentation",
                     "captionPadding": "0",
                     "chartTopMargin": "16",
+                    "manageLabelOverflow": "1",
+                    "labelSepChar": ", ", //"<br />",
                     "showpercentvalues": "1",
-                    "labelSepChar": "<br />",
-                    //"palette" : "1",
+                    "plottooltext": "<b>$label</b>, $value",
                     "showLegend": "1",
                     "legendItemFontSize" : "12",
                     "theme": "fusion",
@@ -49,30 +41,7 @@ export default {
     },
     methods: {
       fillData() {
-        // this is where we will query the imported (json) data with the module code prop for the appropriate data
-        //Replace below line with query result using module code prop, FIT THIS FORMAT (list of jsons)
-        this.datasource.data = [{
-            "label": "Computer Science",
-            "value": "15123"
-        }, {
-            "label": "Architecture",
-            "value": "14233"
-        }, {
-            "label": "Nursing",
-            "value": "25507"
-        }, {
-            "label": "Economics",
-            "value": "14233"
-        }, {
-            "label": "Accounting",
-            "value": "25507"
-        }, {
-            "label": "Chemical Engineering",
-            "value": "14233"
-        }, {
-            "label": "Statistics",
-            "value": "25507"
-        }];
+        this.datasource.data = this.moduledata[this.code]['Faculty'];
       },
     }
 }

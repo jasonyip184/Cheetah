@@ -115,7 +115,7 @@
 <script>
   import Footer from "@/components/Footer.vue";
   import DataTable from "@/components/DataTable.vue";
-  import { Popover } from 'bootstrap-vue/es/directives/popover' //need to import this for tooltip
+  //need to import this for tooltip
 
   export default {
     name: "modtype",
