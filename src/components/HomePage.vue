@@ -1,51 +1,40 @@
 <template>
   <div class="home_page">
-    <div v-html="legacySystemHTML"></div>
-    <li>
-      <b-form @submit="onSubmit">
-        <b-form-group id="searchModule"
-                      label="Search module information"
-                      label-for="enteredModuleCode">
-          <b-form-input id="enteredModuleCode"
-                        type="text"
-                        v-model="form.text"
-                        required
-                        placeholder="Enter module code" />
-        </b-form-group>
-        <b-button id="submitbutton" type="submit" variant="primary" @click="modalShow = !modalShow">Submit</b-button>
-      </b-form>
+    <div v-html="carouselHTML"></div>
+    <br/><br/>
 
-      <b-modal v-model="modalShow">
-        <h1>{{ this.form.text }}</h1>
-      </b-modal>
-    </li>
+    <!-- Search Input -->
+    <b-container fluid class="content">
+      <b-row align-h="center">
+        <b-col cols="3">
+          <b-input-group>
 
-    <ul /><br />
+            <b-form-input
+              id="inputModuleCode"
+              v-model="code"
+              trim
+              type="text"
+              :state="checkModuleCode"
+              aria-describedby="inputLiveHelp inputLiveFeedback"
+              placeholder="Enter Module Code"
+            />
+            <b-input-group-append>
+              <router-link :to="{ name: 'module', params: { code } }">
+                <b-button :disabled="isInvalidInput" variant="dark">Search</b-button>
+              </router-link>
+            </b-input-group-append>
 
-    <b-card-group deck class="mb-3">
-        <b-card bg-variant="secondary"
-                text-variant="white"
-                header="Course"
-                class="text-center">
-            <p class="card-text">Discover the modules students from your course are taking. Wouldn't it be great to know whether you're following the same path as your seniors? It's good to know that you are special sometimes too!</p>
-            <b-button id="coursebutton" href="#/course" variant="primary">View course statistics</b-button>
-        </b-card>
-        <b-card bg-variant="danger"
-                text-variant="white"
-                header="Batch"
-                class="text-center">
-            <p class="card-text">Ever wondered what modules your batchmates across faculties are taking? Plan your GEMs or unresticted electives.</p>
-            <b-button href="#/modtype" variant="primary">View batch statistics</b-button>
-        </b-card>
-        <b-card bg-variant="success"
-                text-variant="white"
-                header="Industry"
-                class="text-center">
-            <p class="card-text">Wanna know what modules the alumni students have taken? We think it's best that you find out what modules your seniors have taken especially if they are in an industry you are interested in.</p>
-            <b-button href="#/industry" variant="primary">View modules associated with industry</b-button>
-        </b-card>
-    </b-card-group>
-    <br/><br/><br/>
+            <!-- This will only be shown if the preceeding input has an invalid state -->
+            <b-form-invalid-feedback id="inputLiveFeedback">
+              Invalid Module Code
+            </b-form-invalid-feedback>
+          </b-input-group>
+        </b-col>
+      </b-row>
+    </b-container>
+    <br/><br/>
+
+    <div v-html="cardsHTML"></div>
 
     <Footer/>
 
@@ -56,29 +45,29 @@
 
 <script>
   import Footer from "@/components/Footer.vue";
+  import jsondata from '@/data/module_data.json';
+
   export default {
     data() {
       return {
+        // For tour
         steps: [
           {
-            target: '#submitbutton',  // We're using document.querySelector() under the hood
+            target: '#inputModuleCode',
             content: `Use this as a tour`
           },
           {
-            target: '#coursebutton',
+            target: '.minibox',
             content: 'Bring directly to elements with ids'
           },
-          {
-            target: '[data-v-step="2"]',
-            content: 'Try it, you\'ll love it!<br>You can put HTML in the steps and completely customize the DOM to suit your needs.',
-            params: {
-              placement: 'top'
-            }
-          }
         ],
+        // For input field
+        modulelist: jsondata['modulelist'],
+        isInvalidInput: true,
+        code: '',
         form: {},
         modalShow: false,
-        legacySystemHTML: `
+        carouselHTML: `
         <section class="banner full">
 				<article class="slide">
 					<img src="https://www.nicholaswan.me/images/cheetah/computing.png" alt="" />
@@ -114,6 +103,8 @@
 					</div>
 				</article>
 			</section>
+      `,
+      cardsHTML: `
       <section id="one" class="wrapper style2">
 				<div class="inner">
 					<header class="align-center">
@@ -159,9 +150,23 @@
       this.$tours['myTour'].start()
     },
     methods: {
-      onSubmit(evt) {
-        evt.preventDefault()
-      }
+    },
+    computed: {
+      checkModuleCode() {
+        if (this.code.length == 0) {
+          return 'null'
+        }
+        else {
+          if (this.modulelist.includes(this.code)){
+            this.isInvalidInput = false
+            return true
+          }
+          else{
+            this.isInvalidInput = true
+            return false
+          }
+        }
+      },
     },
     name: "home",
     components: {

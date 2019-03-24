@@ -13,6 +13,14 @@ import { ClientTable } from 'vue-tables-2';
 import "ag-grid-enterprise";
 import {LicenseManager} from "ag-grid-enterprise";
 import VueTour from 'vue-tour';
+import VueFusionCharts from 'vue-fusioncharts';
+import FusionCharts from 'fusioncharts';
+import Column2D from 'fusioncharts/fusioncharts.charts';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import Layout from 'bootstrap-vue/es/components/layout';
+import Button from 'bootstrap-vue/es/components/button'
+import InputGroup from 'bootstrap-vue/es/components/input-group'
+import FormInput from 'bootstrap-vue/es/components/form-input'
 
 LicenseManager.setLicenseKey("Evaluation_License-_Not_For_Production_Valid_Until_25_May_2019__MTU1ODczODgwMDAwMA==156057ec2a5212d3fc17b2c425718067");
 require('vue-tour/dist/vue-tour.css')
@@ -24,6 +32,8 @@ Vue.use(VPopover, { tooltip: true });
 Vue.use(VueFire);
 Vue.use(ClientTable);
 Vue.use(VueTour);
+Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme);
+Vue.use(Layout, Button, InputGroup, FormInput);
 
 new Vue({
   router,

@@ -32,7 +32,6 @@
             >
         </ag-grid-vue>
     </div>
-
 </template>
 
 <script>
@@ -81,22 +80,19 @@
                 template: function(params) {
                     var moduledesc = params.data.ModuleDescription;
                     var moduledesc = (typeof moduledesc === 'undefined') ? "Currently Unavailable" : moduledesc;
-                    // var keyword1 = "financial"
-                    // var keyword2 = "accounting"
-                    // var keyword3 = "investing"
-                    // var keyword4 = "lending"
-                    // var keyword5 = "decision-making"
+    
                     var keyword1 = params.data.keyword1;
                     var keyword2 = params.data.keyword2;
                     var keyword3 = params.data.keyword3;
                     var keyword4 = params.data.keyword4;
                     var keyword5 = params.data.keyword5;
+                    
                     return (
                     '<div style="padding:1%; text-align:left;">'+
                         '   <span style="white-space:normal; word-break:break-all;"> <b>Module Description:</b> '+moduledesc+'</span><br/><br/>'+
                         '   <div class="button-1">'+
                         '       <div class="eff-1"></div>'+
-                        '       <a href="#/">'+ "Find out more" +'</a>'+
+                        '       <a href="#/module">'+ "Find out more" +'</a>'+
                         '   </div>'+
                         '   <ul>'+
                         '       <li><h6> Keywords:         </h6></li>'+

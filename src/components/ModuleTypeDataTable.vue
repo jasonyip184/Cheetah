@@ -96,7 +96,7 @@
                         '   <span style="white-space:normal; word-break:break-all;"> <b>Module Description:</b> '+moduledesc+'</span><br/><br/>'+
                         '   <div class="button-1">'+
                         '       <div class="eff-1"></div>'+
-                        '       <a href="#/">'+ "Find out more" +'</a>'+
+                        '       <a href="#/module">'+ "Find out more" +'</a>'+
                         '   </div>'+
                         '   <ul>'+
                         '       <li><h6> Expected hours per week:         </h6></li>'+
