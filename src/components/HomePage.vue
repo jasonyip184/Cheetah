@@ -168,6 +168,9 @@
 
     <br/><br/><br/>
     <Footer/>
+
+    <v-tour name="myTour" :steps="steps"></v-tour>
+
   </div>
 </template>
 
@@ -185,6 +188,17 @@
         code: '', //for my input field
         //form: {}, Used only for Nicholas's old input
         //modalShow: false, Used only for Nicholas's old input
+        // For tour
+        steps: [
+          {
+            target: '#inputModuleCode',
+            content: `Use this as a tour`
+          },
+          //{
+          //  target: '.minibox',
+          //  content: 'Bring directly to elements with ids'
+          //},
+        ],
         legacySystemHTML: `
         <section class="banner full">
 				<article class="slide">
@@ -262,6 +276,9 @@
       </section>
       **/
       }
+    },
+    mounted: function () {
+      this.$tours['myTour'].start()
     },
     methods: {
       /** Used only for Nicholas's old input
