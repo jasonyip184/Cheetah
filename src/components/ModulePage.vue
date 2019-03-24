@@ -42,6 +42,7 @@
   import req from '@/components/individual-module/RequirementsChart.vue';
   import ind from '@/components/individual-module/IndustryChart.vue';
   import jsondata from '@/data/module_data.json';
+  import { mapState } from 'vuex';
 
 
   export default {
@@ -58,6 +59,9 @@
       'industry-chart': ind,
       Footer
     },
+    computed: mapState([
+      'code'
+    ]),
     data() {
         return {
             code: this.code,

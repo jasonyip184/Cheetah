@@ -93,7 +93,8 @@
             />
             <b-input-group-append>
               <router-link :to="{ name: 'module', params: { code } }">
-                <b-button :disabled="isInvalidInput" variant="dark">Search</b-button>
+                <b-button :disabled="isInvalidInput" variant="dark" @click="updateCode">Search</b-button>
+                <!--<button :disabled="isInvalidInput" @click="updateCode">Search</button>-->
               </router-link>
             </b-input-group-append>
 
@@ -177,6 +178,7 @@
 <script>
   import Footer from "@/components/Footer.vue";
   import jsondata from '@/data/module_data.json';
+  import { mapMutations } from 'vuex'  // Add mapMutations
 
 
 
@@ -289,6 +291,12 @@
       toUpperCase(text) {
         return text.toUpperCase();
       },
+      ...mapMutations([
+        'UPDATE_MODULE_CODE'
+      ]),
+      updateCode() {
+        this.UPDATE_MODULE_CODE(this.code)
+      }
     },
     computed: {
       checkModuleCode() {

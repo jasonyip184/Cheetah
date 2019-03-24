@@ -37,6 +37,7 @@
 <script>
     import {AgGridVue} from "ag-grid-vue";
     import course_data from '../data/course_data.json';
+    import { mapMutations } from 'vuex'
 
     export default {
         name: 'App',
@@ -80,13 +81,15 @@
                 template: function(params) {
                     var moduledesc = params.data.ModuleDescription;
                     var moduledesc = (typeof moduledesc === 'undefined') ? "Currently Unavailable" : moduledesc;
-    
+
+                    //this.updateCode(params.data.ModuleCode)??
+
                     var keyword1 = params.data.keyword1;
                     var keyword2 = params.data.keyword2;
                     var keyword3 = params.data.keyword3;
                     var keyword4 = params.data.keyword4;
                     var keyword5 = params.data.keyword5;
-                    
+
                     return (
                     '<div style="padding:1%; text-align:left;">'+
                         '   <span style="white-space:normal; word-break:break-all;"> <b>Module Description:</b> '+moduledesc+'</span><br/><br/>'+
@@ -137,6 +140,12 @@
                 var value = document.getElementById("page-size").value;
                 this.gridApi.paginationSetPageSize(Number(value));
             },
+            ...mapMutations([
+              'UPDATE_MODULE_CODE'
+            ]),
+            updateCode(newCode) {
+              this.UPDATE_MODULE_CODE(newCode)
+            }
         }
     };
 
