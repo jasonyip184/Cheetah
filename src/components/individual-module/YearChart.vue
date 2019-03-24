@@ -26,7 +26,7 @@ export default {
                     "showPercentValues": "1",
                     "showLegend": "0",
                     "showpercentvalues": "1",
-                    "plottooltext": "<b>$label</b>, $percentValue",
+                    "plottooltext": "<b>$label</b>, $value",
                     "theme": "fusion",
                     "bgColor": "#FAF8EA",
                     "bgAlpha": "40",

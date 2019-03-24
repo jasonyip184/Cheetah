@@ -4,10 +4,11 @@
     <h1>Welcome to NUS Module Demographics</h1>
     <br/>
 
-    <!-- Use this whole chunk for the module input field -->
+    <!-- Use this whole chunk for the cards and module input field -->
     <b-container fluid class="content">
-      <b-row align-h="center">
-        <b-col cols="3">
+      <br/><br/>
+      <b-row align-h="center" height="300px">
+        <b-col cols="4">
           <b-input-group>
 
             <b-form-input
@@ -17,7 +18,7 @@
               type="text"
               :state="checkModuleCode"
               aria-describedby="inputLiveHelp inputLiveFeedback"
-              placeholder="Enter Module Code"
+              placeholder="Enter Module Code (e.g. ACC1002)"
             />
             <b-input-group-append>
               <router-link :to="{ name: 'module', params: { code } }">
@@ -31,8 +32,88 @@
             </b-form-invalid-feedback>
 
           </b-input-group>
+
+          <!-- Can be removed if unnecessary -->
+          <b-form-text id="inputLiveHelp">
+              Please do not enter the module name together with the module code
+          </b-form-text>
+
         </b-col>
       </b-row>
+
+      <br/><br/><br/>
+
+      <b-row align-h="center">
+
+        <b-col cols="4">
+          <b-card no-body>
+            <b-row no-gutters>
+              <b-col md="4">
+                <b-card-img src="https://www.nicholaswan.me/images/cheetah/computing.png" max-width="100%" height="100%" class="rounded-0" />
+              </b-col>
+              <b-col md="8">
+                <b-card-body>
+                  <router-link :to="{ name: 'course'}">
+                    <div class="cardTitle">Faculty</div>
+                  </router-link>
+                  <b-card-text>
+                    <p class="text-justify">
+                      Find out which year you should be clearing certain modules based on what your seniors did
+                    </p>
+                  </b-card-text>
+                </b-card-body>
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+
+        <b-col cols="4">
+          <b-card no-body>
+            <b-row no-gutters>
+              <b-col md="4">
+                <b-card-img src="https://www.nicholaswan.me/images/cheetah/arts.png" max-width="100%" height="100%"class="rounded-0" />
+              </b-col>
+              <b-col md="8">
+                <b-card-body>
+                  <router-link :to="{ name: 'modtype'}">
+                    <div class="cardTitle">Module Type</div>
+                  </router-link>
+                  <b-card-text>
+                    <p class="text-justify">
+                      Find out which are popular GE modules to take based on your ideal workload requirements
+                    </p>
+                  </b-card-text>
+                </b-card-body>
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+
+        <b-col cols="4">
+          <b-card no-body>
+            <b-row no-gutters>
+              <b-col md="4">
+                <b-card-img src="https://www.nicholaswan.me/images/cheetah/industry.png" max-width="100%" height="100%" auto class="rounded-0" />
+              </b-col>
+              <b-col md="8">
+                <b-card-body>
+                  <router-link :to="{ name: 'industry'}">
+                    <div class="cardTitle">Industry</div>
+                  </router-link>
+                  <b-card-text>
+                    <p class="text-justify">
+                      Find out which modules will teach you useful knowledge and skills required to work in an industry
+                    </p>
+                  </b-card-text>
+                </b-card-body>
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+
+
+      </b-row>
+
     </b-container>
     <!-- COPY till here, also copy data() parts and computed checkModuleCode() function -->
 
@@ -107,6 +188,9 @@
       onSubmit(evt) {
         evt.preventDefault()
       },
+      toUpperCase(text) {
+        return text.toUpperCase();
+      },
     },
     computed: {
       checkModuleCode() {
@@ -114,7 +198,8 @@
           return 'null'
         }
         else {
-          if (this.modulelist.includes(this.code)){
+          let mod = this.code.toUpperCase()
+          if (this.modulelist.includes(mod)){ //this.code
             this.isInvalidInput = false
             return true
           }
@@ -134,6 +219,22 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.cardTitle {
+  color: #424242;
+  font-weight: bold; /**bold or "200"**/
+  font-size: 20px;
+  margin-top: -10px;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  /**
+  width: 100%;
+  text-align: center;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  text-transform: uppercase;
+  margin: 10px auto 10px;**/
+}
+
 h3 {
   margin: 40px 0 0;
 }
