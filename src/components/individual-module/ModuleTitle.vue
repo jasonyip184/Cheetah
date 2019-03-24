@@ -15,6 +15,7 @@
 <script>
 //Have to import json data or wherever is our individual module data source
 //e.g. import json_data from './indiv-mod-data.json'
+
 export default {
   name: 'ModuleTitle',
   props: {
@@ -26,6 +27,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 .moduleTitle {
   color: #424242;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -38,6 +40,7 @@ export default {
   text-transform: uppercase;
   /**margin: 10px auto 10px;**/
 }
+
 .moduleName {
   color: #999999;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -48,6 +51,7 @@ export default {
   margin-top: -14px;
   /**margin: 10px auto 10px;**/
 }
+
 /** Not Used
 h3 {
   margin: 40px 0 0;

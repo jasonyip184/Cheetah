@@ -1,5 +1,8 @@
+
+
 <script>
 import jsondata from '@/data/module_data.json';
+
 export default {
   name: 'Overview',
   props: {
@@ -47,6 +50,7 @@ export default {
               "legendItemFontSize": "12",
               //"bgColor": "#FAF8EA",
               //"bgAlpha": "40",
+
           },
           "data": null,
       },
@@ -192,6 +196,7 @@ export default {
   color: #2c3e50;
   margin-top: 30px;
 }
+
 .information {
     display: grid;
     grid-template-columns: 100%;
@@ -200,6 +205,7 @@ export default {
       "left";
     height: 100%;
   }
+
 .Title {
     color: #003d7c;
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -207,6 +213,7 @@ export default {
     font-size: 26px;
     margin: 30px auto 10px;
 }
+
 .paragraph{
     color: #424242;
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -215,27 +222,32 @@ export default {
     text-align: "right";
     margin: 10px auto 10px;
 }
+
 .lessonCat{
   color: #EE5230;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 10;
   font-size: 14px;
 }
+
 .lessonValue{
   font-weight: "bold";
   font-size: 13px;
 }
+
 .lessonCatEmpty{
   color: #FFFFFF;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 10;
   font-size: 14px;
 }
+
 .lessonValueEmpty{
   color: #FFFFFF;
   font-weight: "bold";
   font-size: 13px;
 }
+
 .button {
   margin-top: 7px;
   /**margin-left: 50px;**/

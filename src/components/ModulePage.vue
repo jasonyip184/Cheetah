@@ -4,23 +4,23 @@
 
       <b-row align-h="center">
         <b-col cols="12">
-          <module-title v-bind:code="code" v-bind:name="name"></module-title>
+          <module-title v-bind:code="toUpperCase(code)" v-bind:name="name"></module-title>
         </b-col>
       </b-row>
 
       <b-row>
-        <b-col class="moduleInfo" cols='4'> <!-- implied cols="4" as it is even-->
-          <information v-bind:code="code" v-bind:description="description" v-bind:lessons="lessons" v-bind:breakdown="breakdown"></information>
+        <b-col class="moduleInfo" cols="4"> <!-- implied cols="4" as it is even-->
+          <information v-bind:code="toUpperCase(code)" v-bind:description="description" v-bind:lessons="lessons" v-bind:breakdown="breakdown"></information>
         </b-col>
 
-        <b-col class="chartCol" cols='4'> <!-- implied cols="4" as it is even-->
-          <major-chart v-bind:code="code"></major-chart>
-          <requirements-chart v-bind:code="code"></requirements-chart>
+        <b-col class="chartCol" cols="4"> <!-- implied cols="4" as it is even-->
+          <major-chart v-bind:code="toUpperCase(code)"></major-chart>
+          <requirements-chart v-bind:code="toUpperCase(code)"></requirements-chart>
         </b-col>
 
-        <b-col class="chartCol" cols='4'> <!-- implied cols="4" as it is even-->
-          <year-chart v-bind:code="code"></year-chart>
-          <industry-chart v-bind:code="code"></industry-chart>
+        <b-col class="chartCol" cols="4"> <!-- implied cols="4" as it is even-->
+          <year-chart v-bind:code="toUpperCase(code)"></year-chart>
+          <industry-chart v-bind:code="toUpperCase(code)"></industry-chart>
         </b-col>
       </b-row>
     </b-container>
@@ -42,6 +42,8 @@
   import req from '@/components/individual-module/RequirementsChart.vue';
   import ind from '@/components/individual-module/IndustryChart.vue';
   import jsondata from '@/data/module_data.json';
+
+
   export default {
     name: "batch",
     props: {
@@ -59,6 +61,7 @@
     data() {
         return {
             code: this.code,
+            capCode: '',
             moduledata: jsondata,
             name: '',
             description: '',
@@ -66,14 +69,21 @@
         }
     },
     mounted() {
+      this.ensureCapitalCode();
       this.getModuleData();
     },
     methods: {
+      toUpperCase(text) {
+        return text.toUpperCase()
+      },
+      ensureCapitalCode() {
+        this.capCode = this.code.toUpperCase()
+      },
       getModuleData() {
-        this.name = this.moduledata[this.code]['Name']
-        this.description = this.moduledata[this.code]['Description']
-        this.lessons = this.moduledata[this.code]['Lessons']
-        this.breakdown = this.moduledata[this.code]['Breakdown']
+        this.name = this.moduledata[this.capCode]['Name']
+        this.description = this.moduledata[this.capCode]['Description']
+        this.lessons = this.moduledata[this.capCode]['Lessons']
+        this.breakdown = this.moduledata[this.capCode]['Breakdown']
       }
     }
   };
@@ -81,6 +91,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 #module_page {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -89,14 +100,17 @@
   color: #2c3e50;
   margin-top: 20px;
 }
+
 .moduleInfo{
   text-align: left;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif; /**not working**/
 }
+
 .chartCol {
   width: 100%;
   margin-top: -20px;
 }
+
 h3 {
   margin: 40px 0 0;
 }
