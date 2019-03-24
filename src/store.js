@@ -5,12 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    code: ''
+    code: 'CS1010S'
   },
   mutations: {
-    UPDATE_MODULE_CODE: (state, newcode) => {
-      state.code = newcode
+    updateCode (state, new_code) {
+      state.code = new_code
     }
-  },
-  actions: {}
+  }
 });

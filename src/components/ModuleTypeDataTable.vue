@@ -90,7 +90,8 @@
                     var word3 = params.data.Lab;
                     var word4 = params.data.Project;
                     var word5 = params.data.Preparation;
-                    var word6 = params.data.Graded
+                    var word6 = params.data.Graded;
+
                     return (
                     '<div style="padding:1%; text-align:left;">'+
                         '   <span style="white-space:normal; word-break:break-all;"> <b>Module Description:</b> '+moduledesc+'</span><br/><br/>'+

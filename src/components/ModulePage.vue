@@ -47,9 +47,6 @@
 
   export default {
     name: "batch",
-    props: {
-      code: String,
-    },
     components: {
       'module-title': title,
       'information': info,
@@ -59,12 +56,9 @@
       'industry-chart': ind,
       Footer
     },
-    computed: mapState([
-      'code'
-    ]),
     data() {
         return {
-            code: this.code,
+            code: this.$store.state.code,
             capCode: '',
             moduledata: jsondata,
             name: '',
