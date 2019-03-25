@@ -1,48 +1,98 @@
 <template>
     <div>
-        <div style="text-align:right; margin-right:12%; font-family: Segoe UI;">
-            Display rows:
-            <select v-on:change="onPageSizeChanged()" id="page-size" style="border: 1px solid black; font-family: Segoe UI;">
-                <option value="10" selected="">10</option>
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
+
+      <b-row align-h="center">
+      <div class="selectedHeader">
+          <img v-b-popover.hover.topleft="tooltip" alt="Help" height="16" width="16" src="@/assets/help.png" />
+          Selected Module:
         </div>
+      </b-row>
 
-        <ag-grid-vue style="margin-top:2%;"
-                    class="ag-theme-balham"
-                    id="myGrid"
-                    :columnDefs="columnDefs"
-                    :rowData="rowData"
-                    :defaultColDef="defaultColDef"
-                    :gridOptions="gridOptions"
-                    @grid-ready="onGridReady"
-                    :pagination="true"
-                    :paginationPageSize="paginationPageSize"
-                    :paginationNumberFormatter="paginationNumberFormatter"
-                    :floatingFilter="true"
-                    :masterDetail="true"
-                    rowSelection="multiple"
-                    :sideBar="sideBar"
-                    :enableRangeSelection="true"
-                    :statusBar="statusBar"
-                    :detailCellRendererParams="detailCellRendererParams"
-                    :detailRowHeight="detailRowHeight"
-            >
-        </ag-grid-vue>
+      <b-row align-h="center">
+        <div class="selectedModule">{{selectedModuleText}}</div>
+      </b-row>
+
+      <b-row align-h="center">
+        <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
+          <b-button @click="updateCode" variant="success" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
+        </router-link>
+
+        <!-- Normal button
+        <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
+          <button @click="updateCode" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></button>
+        </router-link>
+        -->
+        <!--<p v-show="isInvalidInput">Invisible like a ninja!</p>-->
+      </b-row>
+
+
+      </br></br>
+      <b-row align-h="end">
+        <b-col cols="2" align-h="start">
+          <div class="tableHeader" style="display: inline">
+              Display rows:
+              <b-form-select v-on:change="onPageSizeChanged()" v-model="selectedRowSize" size="sm">
+                <option :value="10">10</option>
+                <option :value="20">20</option>
+                <option :value="50">50</option>
+                <option :value="100">100</option>
+              </b-form-select>
+          </div>
+        </b-col>
+      </b-row>
+
+
+      <b-row align-h="center">
+        <b-col cols="12">
+          <ag-grid-vue style="margin-top:2%;"
+                      class="ag-theme-balham"
+                      id="myGrid"
+                      :columnDefs="columnDefs"
+                      :rowData="rowData"
+                      :defaultColDef="defaultColDef"
+                      :gridOptions="gridOptions"
+                      @grid-ready="onGridReady"
+                      :pagination="true"
+                      :paginationPageSize="paginationPageSize"
+                      :paginationNumberFormatter="paginationNumberFormatter"
+                      :floatingFilter="true"
+                      :masterDetail="true"
+                      rowSelection="single"
+                      :sideBar="sideBar"
+                      :enableRangeSelection="true"
+                      :statusBar="statusBar"
+                      :detailCellRendererParams="detailCellRendererParams"
+                      :detailRowHeight="detailRowHeight"
+                      @selection-changed="onSelectionChanged"
+              >
+          </ag-grid-vue>
+        </b-col>
+      </b-row>
+
     </div>
-
 </template>
+
 
 <script>
     import {AgGridVue} from "ag-grid-vue";
     import module_type_data from '../data/module_type_data.json';
+    import { mapMutations } from 'vuex'
 
     export default {
         name: 'App',
         data() {
             return {
+                selectedRowSize: "10", //default value for row/page size
+                selectedModuleCode: 'None',
+                selectedModuleText: 'None',
+                tooltip: {
+                  title: 'User Help',
+                  content:
+                  'Click any row in the results table to select a module. \n\n \
+                  Click a column header to toggle between sorting that column in ascending/ descending order. \n\n \
+                  Column widths can be adjusted. \n\n \
+                  Columns can also be reordered by dragging them left/ right.'
+                },
                 gridOptions: null,
                 gridApi: null,
                 columnDefs: null,
@@ -137,15 +187,42 @@
             this.gridColumnApi = this.gridOptions.columnApi;
         },
         methods: {
-            // to select mods later
             onSelectionChanged() {
                 var selectedRows = this.gridApi.getSelectedRows();
-                var selectedRowsString = "";
+                var selectedRowsStringCode = "";
+                var selectedRowsStringText = "";
+                selectedRows.forEach(function(selectedRow, index) { //flexible also for multiple selection
+                  if (index !== 0) {
+                    selectedRowsString += ", ";
+                  }
+                  selectedRowsStringCode += selectedRow.ModuleCode;
+                  selectedRowsStringText += selectedRow.ModuleCode + ' ' + selectedRow.ModuleTitle
+                });
+                this.selectedModuleCode = selectedRowsStringCode
+                this.selectedModuleText = selectedRowsStringText
             },
             onPageSizeChanged(newPageSize) {
-                var value = document.getElementById("page-size").value;
-                this.gridApi.paginationSetPageSize(Number(value));
+                this.gridApi.paginationSetPageSize(this.selectedRowSize); //for new row size filter
             },
+            ...mapMutations([
+              'UPDATE_MODULE_CODE'
+            ]),
+            updateCode() {
+              this.UPDATE_MODULE_CODE(this.selectedModuleCode)
+            }
+        },
+        computed: {
+          isInvalidInput(){
+            return (this.selectedModuleCode == 'None')
+          },
+          isInvalidInputR(){
+            if (this.selectedModuleCode == 'None') {
+              return ''
+            }
+            else {
+              return 'click'
+            }
+          },
         }
     };
 
@@ -156,6 +233,62 @@
     @import "../../node_modules/ag-grid-community/dist/styles/ag-grid.css";
     @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css";
 
+    .selectedHeader {
+      color: #424242;
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-weight: "330"; /**330;**/
+      font-size: 27px;
+      width: 100%;
+      text-align: center;
+      /**margin: 10px auto 10px;**/
+    }
+
+    .selectedModule {
+      color: #999999;
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-weight: "bold";
+      font-size: 35px;
+      width: 100%;
+      text-align: center;
+      margin-top: -5px;
+      margin-bottom: 0px;
+      /**margin: 10px auto 10px;**/
+    }
+
+    .tableHeader {
+      color: #0c69aa;
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-weight: 369; /**bold**/
+      font-size: 16px;
+      width: 100%;
+      text-align: center;
+      display: inline;
+    }
+
+    .searchButton {
+      background: #E1E1E1;
+      height: 30px;
+      padding-bottom: 3px;
+      padding-left: 8px;
+      padding-right: 8px;
+      border: #FF4040;
+      border-radius: 2px;
+      text-align: center;
+      /**
+      color: #fff;
+      text-emphasis-color: #E27979;
+      padding: 10px;
+      margin: 5px;**/
+    }
+
+    .buttontext {
+      color: #F9F9F9;
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-weight: "bold"; /**330;**/
+      font-size: 14px;
+      margin-top: -2px;
+    }
+    
     .button-1{
         width:140px;
         height:30px;

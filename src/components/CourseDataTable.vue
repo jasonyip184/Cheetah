@@ -208,7 +208,6 @@
                 **/
                 this.gridApi.paginationSetPageSize(this.selectedRowSize); //this is for my new filter
             },
-
             ...mapMutations([
               'UPDATE_MODULE_CODE'
             ]),
