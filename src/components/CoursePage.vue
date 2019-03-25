@@ -1,8 +1,22 @@
 <template>
   <div class="course_page">
-    <h1>Course Page</h1>
-    <CourseDataTable/>
-    <br/><br/><br/>
+    <b-container fluid class="content">
+      <b-row align-h="center">
+        <b-col cols="12" class="titlePosition">
+              <div class="moduleTitle"><font-awesome-icon icon="school" class="shiftLeft"/> Faculty</div>
+        </b-col>
+      </b-row>
+
+      <b-row align-h="center" class="description">
+        <b-col cols="9">
+          Discover modules other students from your (or any other) course are taking.<br/>
+          Know what are the popular modules your seniors completed, and plan to take them together with your friends.
+        </b-col>
+      </b-row>
+      </br></br></br>
+      <CourseDataTable/>
+      <br/><br/><br/>
+    </b-container>
     <Footer/>
   </div>
 </template>
@@ -30,6 +44,34 @@
 </script>
 
 <style scoped>
+.titlePosition {
+  color: #003d7c;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: "bold";
+  font-size: 56px;
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  padding-bottom: 0px;
+}
+
+.moduleTitle {
+  color: #003d7c;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: "bold";
+  font-size: 56px;
+  width: 100%;
+  text-align: center;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+.shiftLeft {
+  padding-right: 15px;
+}
+
 h3 {
   margin: 40px 0 0;
 }
