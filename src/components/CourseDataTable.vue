@@ -1,36 +1,57 @@
 <template>
     <div>
-        <div style="text-align:right; margin-right:12%; font-family: Segoe UI;">
-            Display rows:
-            <select v-on:change="onPageSizeChanged()" id="page-size" style="border: 1px solid black; font-family: Segoe UI;">
-                <option value="10" selected="">10</option>
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
-        </div>
 
-        <ag-grid-vue style="margin-top:2%;"
-                    class="ag-theme-balham"
-                    id="myGrid"
-                    :columnDefs="columnDefs"
-                    :rowData="rowData"
-                    :defaultColDef="defaultColDef"
-                    :gridOptions="gridOptions"
-                    @grid-ready="onGridReady"
-                    :pagination="true"
-                    :paginationPageSize="paginationPageSize"
-                    :paginationNumberFormatter="paginationNumberFormatter"
-                    :floatingFilter="true"
-                    :masterDetail="true"
-                    rowSelection="multiple"
-                    :sideBar="sideBar"
-                    :enableRangeSelection="true"
-                    :statusBar="statusBar"
-                    :detailCellRendererParams="detailCellRendererParams"
-                    :detailRowHeight="detailRowHeight"
-            >
-        </ag-grid-vue>
+
+        <b-row align-h="end">
+
+          <b-col cols="2" align-h="start">
+            <div class="tableHeader" style="display: inline">
+                Display rows:
+                <!-- This your old filter
+                <select v-on:change="onPageSizeChanged()" id="page-size" style="border: 1px solid black; font-family: Segoe UI;">
+                    <option value="10" selected="">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+              ``-->
+                <b-form-select v-on:change="onPageSizeChanged()" v-model="selectedRow" size="sm">
+                  <option :value="10">10</option>
+                  <option :value="20">20</option>
+                  <option :value="50">50</option>
+                  <option :value="100">100</option>
+                </b-form-select>
+            </div>
+          </b-col>
+        </b-row>
+
+        <b-row align-h="center">
+          <b-col cols="12">
+            <ag-grid-vue style="margin-top:2%;"
+                        class="ag-theme-balham"
+                        id="myGrid"
+                        :columnDefs="columnDefs"
+                        :rowData="rowData"
+                        :defaultColDef="defaultColDef"
+                        :gridOptions="gridOptions"
+                        @grid-ready="onGridReady"
+                        :pagination="true"
+                        :paginationPageSize="paginationPageSize"
+                        :paginationNumberFormatter="paginationNumberFormatter"
+                        :floatingFilter="true"
+                        :masterDetail="true"
+                        rowSelection="multiple"
+                        :sideBar="sideBar"
+                        :enableRangeSelection="true"
+                        :statusBar="statusBar"
+                        :detailCellRendererParams="detailCellRendererParams"
+                        :detailRowHeight="detailRowHeight"
+                >
+            </ag-grid-vue>
+          </b-col>
+        </b-row>
+
+
     </div>
 </template>
 
@@ -42,6 +63,7 @@
         name: 'App',
         data() {
             return {
+                selectedRow: "10", //default value for row/page size using my new filter
                 gridOptions: null,
                 gridApi: null,
                 columnDefs: null,
@@ -134,8 +156,11 @@
                 var selectedRowsString = "";
             },
             onPageSizeChanged(newPageSize) {
+                /** This is how you update the table with new row size using your old filter
                 var value = document.getElementById("page-size").value;
                 this.gridApi.paginationSetPageSize(Number(value));
+                **/
+                this.gridApi.paginationSetPageSize(this.selectedRow); //this is for my new filter
             },
         }
     };
@@ -146,6 +171,16 @@
 <style lang="scss">
     @import "../../node_modules/ag-grid-community/dist/styles/ag-grid.css";
     @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css";
+
+    .tableHeader {
+      color: #0c69aa;
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-weight: 369; /**bold**/
+      font-size: 16px;
+      width: 100%;
+      text-align: center;
+      display: inline;
+    }
 
     .button-1{
         width:140px;
