@@ -3,7 +3,7 @@
     <b-container fluid class="content">
       <b-row align-h="center">
         <b-col cols="12" class="titlePosition">
-              <div class="moduleTitle"><font-awesome-icon icon="school" class="shiftLeft"/> Faculty</div>
+              <div class="moduleTitle"><font-awesome-icon icon="school" class="shiftLeft"/> Course</div>
         </b-col>
       </b-row>
 
