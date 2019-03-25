@@ -23,6 +23,7 @@ import Button from 'bootstrap-vue/es/components/button'
 import InputGroup from 'bootstrap-vue/es/components/input-group'
 import FormInput from 'bootstrap-vue/es/components/form-input'
 import FormSelect from 'bootstrap-vue/es/components/form-select';
+import Popover from 'bootstrap-vue/es/directives/popover';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBook, faSchool, faIndustry, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
@@ -44,7 +45,7 @@ Vue.use(VueFire);
 Vue.use(ClientTable);
 Vue.use(VueTour);
 Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme);
-Vue.use(Layout, Card, Button, InputGroup, FormInput, FormSelect);
+Vue.use(Layout, Card, Button, InputGroup, FormInput, FormSelect, Popover);
 
 new Vue({
   router,

@@ -3,6 +3,7 @@
 
         <b-row align-h="center">
         <div class="selectedHeader">
+            <img v-b-popover.hover.topleft="tooltip" alt="Help" height="16" width="16" src="@/assets/help.png" />
             Selected Module:
           </div>
         </b-row>
@@ -91,6 +92,14 @@
                 selectedRowSize: "10", //default value for row/page size using my new filter
                 selectedModuleCode: 'None',
                 selectedModuleText: 'None',
+                tooltip: {
+                  title: 'User Help',
+                  content:
+                  'Click any row in the results table to select a module. \n\n \
+                  Click a column header to toggle between sorting that column in ascending/ descending order. \n\n \
+                  Column widths can be adjusted. \n\n \
+                  Columns can also be reordered by dragging them left/ right.'
+                },
                 gridOptions: null,
                 gridApi: null,
                 columnDefs: null,
