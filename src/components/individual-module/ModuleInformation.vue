@@ -161,12 +161,12 @@ export default {
           </b-col>
 
         </b-row>
-
-        <b-row align-h="end" class="button">
-          <b-button size="sm" variant="outline-primary" @click="newTab">Add to timetable in NUSMods</b-button>
-        </b-row>
-
       </b-container>
+      <b-row align-h="end" class="button">
+        <!--<b-button size="sm" variant="outline-primary" @click="newTab"><div class="buttontext">Add to timetable in NUSMods</div></b-button>-->
+        <button @click="newTab"><div class="buttontext">Add to timetable in NUSMods</div></button>
+      </b-row>
+
 
 
       <h1 class="Title">Assessment Breakdown</h1>
@@ -223,6 +223,10 @@ export default {
     margin: 10px auto 10px;
 }
 
+.lessons-table {
+  margin-left: -50px;
+}
+
 .lessonCat{
   color: #EE5230;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -246,6 +250,28 @@ export default {
   color: #FFFFFF;
   font-weight: "bold";
   font-size: 13px;
+}
+
+button {
+  background: #FFFFFF;
+  height: 38px;
+  border: 1px;
+  border-radius: 3px;
+  border-color: #007BFF;
+  /**
+  border-radius: 2px;
+  border: #fff; none
+  color: #fff;
+  text-emphasis-color: #E27979;
+  padding: 10px;
+  margin: 5px;**/
+}
+
+.buttontext {
+  color: #007BFF; /**#F9F9F9;**/
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 400; /**330;**/
+  font-size: 14px;
 }
 
 .button {
