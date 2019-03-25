@@ -90,7 +90,7 @@
               placeholder="Enter Module Code (e.g. ACC1002)"
             />
             <b-input-group-append>
-              <router-link :to="{ name: 'module' }">
+              <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
                 <!-- <b-button :disabled="isInvalidInput" variant="dark" @click="updateCode">Search</b-button> -->
                 <button :disabled="isInvalidInput" @click="updateCode"><div class="buttontext">Search</div></button>
               </router-link>
@@ -225,6 +225,15 @@
           }
         }
       },
+      isInvalidInputR(){
+        /**return ''**/
+        if (this.isInvalidInput) {
+          return ''
+        }
+        else {
+          return 'click'
+        }
+      }
     },
     name: "home",
     components: {
@@ -235,11 +244,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.shiftUp {
-  margin-bottom: 0px;
-  margin-top: 0px;
-}
 
 .categoryHeader {
   color: #003d7c;

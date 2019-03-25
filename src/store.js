@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    code: 'CS1010S'
+    code: ''
   },
   mutations: {
     UPDATE_MODULE_CODE: (state, newcode) => { //convention is to caps function in state, then import
