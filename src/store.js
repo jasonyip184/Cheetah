@@ -8,8 +8,8 @@ export default new Vuex.Store({
     code: 'CS1010S'
   },
   mutations: {
-    updateCode (state, new_code) {
-      state.code = new_code
+    UPDATE_MODULE_CODE: (state, newcode) => { //convention is to caps function in state, then import
+      state.code = newcode
     }
-  }
+  },
 });

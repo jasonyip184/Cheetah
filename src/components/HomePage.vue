@@ -91,7 +91,8 @@
             />
             <b-input-group-append>
               <router-link :to="{ name: 'module' }">
-                <b-button :disabled="isInvalidInput" variant="dark">Search</b-button>
+                <!-- <b-button :disabled="isInvalidInput" variant="dark" @click="updateCode">Search</b-button> -->
+                <button :disabled="isInvalidInput" @click="updateCode"><div class="buttontext">Search</div></button>
               </router-link>
             </b-input-group-append>
             <!-- This will only be shown if the preceeding input has an invalid state -->
@@ -121,9 +122,10 @@
 <script>
   import Footer from "@/components/Footer.vue";
   import jsondata from '@/data/module_data.json';
+  import { mapMutations } from 'vuex'  // Add mapMutations
 
   export default {
-    
+
     data() {
       return {
         modulelist: jsondata['modulelist'],
@@ -198,6 +200,12 @@
       toUpperCase(text) {
         return text.toUpperCase();
       },
+      ...mapMutations([
+        'UPDATE_MODULE_CODE'
+      ]),
+      updateCode() {
+        this.UPDATE_MODULE_CODE(this.code)
+      }
     },
     computed: {
       checkModuleCode() {
@@ -266,6 +274,25 @@
   font-size: 20px;
   margin-top: -10px;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+button {
+  background: #262626;
+  height: 38px;
+  /**
+  border-radius: 2px;
+  border: #fff; none
+  color: #fff;
+  text-emphasis-color: #E27979;
+  padding: 10px;
+  margin: 5px;**/
+}
+
+.buttontext {
+  color: #F9F9F9;
+  /**font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;**/
+  font-weight: "bold"; /**330;**/
+  font-size: 14px;
 }
 
 h3 {
