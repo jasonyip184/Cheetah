@@ -17,16 +17,9 @@
           <b-button @click="updateCode" variant="success" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
         </router-link>
 
-        <!-- Normal button
-        <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
-          <button @click="updateCode" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></button>
-        </router-link>
-        -->
-        <!--<p v-show="isInvalidInput">Invisible like a ninja!</p>-->
       </b-row>
 
 
-      </br></br>
       <b-row align-h="end">
         <b-col cols="2" align-h="start">
           <div class="tableHeader" style="display: inline">
@@ -108,11 +101,11 @@
         beforeMount() {
             this.gridOptions = {};
             this.columnDefs = [
-                {headerName: 'Module Code', field: 'ModuleCode', filter: "agTextColumnFilter", width: 130},
-                {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter", width: 130},
-                {headerName: 'Industry', field: 'Industry', width: 130},
-                {headerName: 'Occupation', field: 'Occupation', width: 130},
-                {headerName: 'Enrolment', field: 'TotalEnrolment', filter: "agNumberColumnFilter", width: 130},
+                {headerName: 'Module Code', field: 'ModuleCode', filter: "agTextColumnFilter"},
+                {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter"},
+                {headerName: 'Industry', field: 'Industry'},
+                {headerName: 'Occupation', field: 'Occupation', width: 290},
+                {headerName: 'Enrolment', field: 'TotalEnrolment', filter: "agNumberColumnFilter"},
             ];
 
             this.rowData = industry_data;

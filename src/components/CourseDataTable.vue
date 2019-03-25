@@ -16,29 +16,13 @@
           <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
             <b-button @click="updateCode" variant="success" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
           </router-link>
-
-          <!-- Normal button
-          <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
-            <button @click="updateCode" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></button>
-          </router-link>
-          -->
-          <!--<p v-show="isInvalidInput">Invisible like a ninja!</p>-->
         </b-row>
 
 
-        </br></br>
         <b-row align-h="end">
           <b-col cols="2" align-h="start">
             <div class="tableHeader" style="display: inline">
                 Display rows:
-                <!-- This your old filter
-                <select v-on:change="onPageSizeChanged()" id="page-size" style="border: 1px solid black; font-family: Segoe UI;">
-                    <option value="10" selected="">10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
-              ``-->
                 <b-form-select v-on:change="onPageSizeChanged()" v-model="selectedRowSize" size="sm">
                   <option :value="10">10</option>
                   <option :value="20">20</option>

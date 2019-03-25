@@ -16,17 +16,8 @@
         <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
           <b-button @click="updateCode" variant="success" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
         </router-link>
-
-        <!-- Normal button
-        <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
-          <button @click="updateCode" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></button>
-        </router-link>
-        -->
-        <!--<p v-show="isInvalidInput">Invisible like a ninja!</p>-->
       </b-row>
 
-
-      </br></br>
       <b-row align-h="end">
         <b-col cols="2" align-h="start">
           <div class="tableHeader" style="display: inline">
@@ -109,14 +100,14 @@
         beforeMount() {
             this.gridOptions = {};
             this.columnDefs = [
-                {headerName: 'Module Code', field: 'ModuleCode', filter: "agTextColumnFilter", width: 100, cellRenderer: "agGroupCellRenderer"},
-                {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter", width: 100},
-                {headerName: 'Module Type', field: 'Type', width: 100},
-                {headerName: 'Major of Students', field: 'Major', width: 100},
+                {headerName: 'Module Code', field: 'ModuleCode', filter: "agTextColumnFilter", width: 115, cellRenderer: "agGroupCellRenderer"},
+                {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter", width: 110},
+                {headerName: 'Module Type', field: 'Type', width: 115},
+                {headerName: 'Major of Students', field: 'Major', width: 130},
                 {headerName: 'Latest From', field: 'YearSem', width: 100},
-                {headerName: 'Assignments %', field: 'Assignments', filter: "agNumberColumnFilter", width: 100},
+                {headerName: 'Assignments %', field: 'Assignments', filter: "agNumberColumnFilter", width: 115},
                 {headerName: 'Class Participation %', field: 'Class Participation', filter: "agNumberColumnFilter", width: 100},
-                {headerName: 'Project Work %', field: 'Project Work', filter: "agNumberColumnFilter", width: 100},
+                {headerName: 'Project Work %', field: 'Project Work', filter: "agNumberColumnFilter", width: 105},
                 {headerName: 'Exams %', field: 'Exams', filter: "agNumberColumnFilter", width: 100},
                 {headerName: 'Enrolment', field: 'TotalEnrolment', filter: "agNumberColumnFilter", width: 100},
             ];
