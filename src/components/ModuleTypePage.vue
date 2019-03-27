@@ -1,21 +1,24 @@
 <template>
   <div class="modtype">
+    <b-card
+      overlay
+      img-src="https://gilmourlance.org/wp-content/uploads/2016/03/11.jpg"
+      img-alt="Card Image"
+      text-variant="white"
+      title="Module Type"
+      title-tag="h1"
+      img-height="350px"
+    >
+      <b-card-text>
+        Discover modules based on their module types.</br>
+        Find out what others chose for their Programme Electives, or/ and find out more about popular GE mods.
+      </b-card-text>
+    </b-card>
     <b-container fluid class="content">
-      <b-row align-h="center">
-        <b-col cols="12" class="titlePosition">
-              <div class="moduleTitle"><font-awesome-icon icon="book" class="shiftLeft"/> Module Type</div>
-        </b-col>
-      </b-row>
 
-      <b-row align-h="center" class="description">
-        <b-col cols="9">
-          Discover modules based on their module types.</br>
-          Find out what others chose for their Programme Electives, or/ and find out more about popular GE mods.
-        </b-col>
-      </b-row>
-      </br></br></br>
+      </br></br>
       <ModuleTypeDataTable/>
-      </br></br></br>
+      </br></br>
     </b-container>
     <Footer/>
   </div>
@@ -76,5 +79,19 @@ li {
 }
 a {
   color: #42b983;
+}
+/* ---------CSS for banner------------- */
+.card-img{
+  object-fit:cover;
+  object-position:center;
+  filter: brightness(40%);
+}
+h1{
+  color:white;
+  margin-top:7rem;
+  font-size:4rem;
+}
+.cart-text{
+  font-size:2rem;
 }
 </style>

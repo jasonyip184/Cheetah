@@ -151,7 +151,7 @@
           },
           {
             target: '.industrytext',
-            content: 'Click to find out what is relevant for an industry',
+            content: 'Click to find out which modules are relevant for an industry',
           },
         ],
         carouselHTML: `
@@ -266,9 +266,10 @@
 }
 
 .cardTitle1:hover,.cardTitle2:hover,.cardTitle3:hover {
-  transition: all .2s ease-in-out;
+  transition: all 1s ease-in-out;
   text-decoration: none!important;
-  color:#3AAFA9
+  color:#3AAFA9;
+  box-shadow: 0px 0px 0px 2px #3AAFA9;
 }
 a:hover{
   text-decoration:none !important;

@@ -12,7 +12,7 @@
         <div class="selectedModule">{{selectedModuleText}}</div>
       </b-row>
 
-      <b-row align-h="center">
+      <b-row align-h="center" v-show="!isInvalidInput">
         <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
           <b-button @click="updateCode" variant="success" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
         </router-link>
@@ -102,9 +102,9 @@
             this.gridOptions = {};
             this.columnDefs = [
                 {headerName: 'Module Code', field: 'ModuleCode', filter: "agTextColumnFilter"},
-                {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter"},
+                {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter",width:250},
                 {headerName: 'Industry', field: 'Industry'},
-                {headerName: 'Occupation', field: 'Occupation', width: 290},
+                {headerName: 'Occupation', field: 'Occupation', width: 350},
                 {headerName: 'Enrolment', field: 'TotalEnrolment', filter: "agNumberColumnFilter"},
             ];
 
@@ -182,7 +182,7 @@
     }
 
     .selectedModule {
-      color: #999999;
+      color: #3AAFA9 ;
       font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
       font-weight: "bold";
       font-size: 35px;

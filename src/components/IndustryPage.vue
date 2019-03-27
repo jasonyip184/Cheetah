@@ -1,21 +1,23 @@
 <template>
   <div class="industry_page">
+    <b-card
+      overlay
+      img-src="https://wonderfulengineering.com/wp-content/uploads/2016/01/singapore-wallpaper-3.jpg"
+      img-alt="Card Image"
+      text-variant="white"
+      title="Industry"
+      title-tag="h1"
+      img-height="350px"
+    >
+      <b-card-text>
+        Discover modules recently employed graduates took while they were studying.</br>
+        This information can serve as a useful guideline of skills and knowledge that would be helpful for a certain industry.
+      </b-card-text>
+    </b-card>
     <b-container fluid class="content">
-      <b-row align-h="center">
-        <b-col cols="12" class="titlePosition">
-              <div class="moduleTitle"><font-awesome-icon icon="industry" class="shiftLeft"/> Industry</div>
-        </b-col>
-      </b-row>
-
-      <b-row align-h="center" class="description">
-        <b-col cols="9">
-          Discover modules recently employed graduates took while they were studying.</br>
-          This information can serve as a useful guideline of skills and knowledge that would be helpful for a certain industry.
-        </b-col>
-      </b-row>
-      </br></br></br>
+      </br></br>
       <IndustryDataTable/>
-      </br></br></br>
+      </br></br>
     </b-container>
     <Footer/>
   </div>
@@ -77,4 +79,20 @@ li {
 a {
   color: #42b983;
 }
+
+/* ---------CSS for banner------------- */
+.card-img{
+  object-fit:cover;
+  object-position:center;
+  filter: brightness(40%);
+}
+h1{
+  color:white;
+  margin-top:7rem;
+  font-size:4rem;
+}
+.cart-text{
+  font-size:2rem;
+}
+
 </style>
