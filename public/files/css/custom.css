@@ -54,3 +54,22 @@ article h2{
 .row{
   margin: 0 0 0 0 !important;;
 }
+.v-step__arrow[data-v-aa0cbe42]{
+  border-color:#3AAFA9 !important;
+  border-style: solid !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+.v-step[data-v-aa0cbe42]{
+  background-color:#3AAFA9 !important;
+  font-size:1rem !important;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif !important;
+}
+.v-step__button[data-v-aa0cbe42] {
+    color: #fff !important;
+    font-size: 1rem !important;
+}
+.v-step__button[data-v-aa0cbe42]:hover{
+  color:black !important;
+  webkit-transition: all .2s ease !important;
+}
