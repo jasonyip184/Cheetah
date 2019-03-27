@@ -29,8 +29,8 @@ export default {
 <style scoped>
 
 .moduleTitle {
-  color: #424242;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: #FF5138;
+  font-family: sans-serif;
   font-weight: "bold"; /**330;**/
   font-size: 50px;
   width: 100%;
@@ -38,11 +38,12 @@ export default {
   margin-top: 60px;
   padding-bottom: 0px;
   text-transform: uppercase;
+  font-weight:600;
   /**margin: 10px auto 10px;**/
 }
 
 .moduleName {
-  color: #999999;
+  color: grey;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: "200";
   font-size: 20px;
