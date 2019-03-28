@@ -18,8 +18,8 @@
                     <div class="cardTitle1">Course</div>
                   </router-link>
                   <b-card-text>
-                    <p class="text-justify">
-                      Find out which year to take your modules based on what others have taken.
+                    <p class="text-left coursetext">
+                      Find out when seniors are taking their Modules, and if you are taking it at a different time.
                     </p>
                   </b-card-text>
                 </b-card-body>
@@ -40,9 +40,8 @@
                     <div class="cardTitle2">Module Type</div>
                   </router-link>
                   <b-card-text>
-                    <p class="text-justify">
-                      Understand the demographic of people taking GE and UE modules.
-                    </p>
+                    <p class="text-left moduletext">
+                        Search Modules based on Module Type, such as Language, General or Unrestricted Elective Modules.                    </p>
                   </b-card-text>
                 </b-card-body>
               </b-col>
@@ -62,8 +61,8 @@
                     <div class="cardTitle3">Industry</div>
                   </router-link>
                   <b-card-text>
-                    <p class="text-justify">
-                      Discover modules your alumni have taken based on their jobs and industries.
+                    <p class="text-left industrytext">
+                      Discover Modules your alumni have taken based on their jobs and industries.
                     </p>
                   </b-card-text>
                 </b-card-body>
@@ -114,7 +113,7 @@
     <br/><br/><br/>
     <Footer/>
 
-    <v-tour name="myTour" :steps="steps"></v-tour>
+    <v-tour name="myTour" :steps="steps" class="tourbox"></v-tour>
 
   </div>
 </template>
@@ -135,23 +134,24 @@
         // For tour
         steps: [
           {
+            target: '.banner',
+            content: `Welcome to Modules+. Would you like a Tour?`
+          },
+          {
             target: '#inputModuleCode',
-            content: `Type in caps and hit Search<strong>you can use tags here also</strong>!`
+            content: `Search for a Module code here`
           },
           {
-            target: '.cardTitle1',
+            target: '.coursetext',
             content: 'Click to find out more about people in your course',
-            params: { placement: 'right' }
           },
           {
-            target: '.cardTitle2',
+            target: '.moduletext',
             content: 'Click to discover modules by their types',
-            params: { placement: 'right' }
           },
           {
-            target: '.cardTitle3',
-            content: 'Click to find out what is relevant for an industry',
-            params: { placement: 'left' }
+            target: '.industrytext',
+            content: 'Click to find out which modules are relevant for an industry',
           },
         ],
         carouselHTML: `
@@ -256,30 +256,24 @@
   margin-top: 30px;
 }
 
-.cardTitle1 {
+.cardTitle1, .cardTitle2, .cardTitle3{
   color: #424242;
   font-weight: bold; /**bold or "200"**/
   font-size: 20px;
   margin-top: -10px;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  text-decoration:none !important;
 }
 
-.cardTitle2 {
-  color: #424242;
-  font-weight: bold; /**bold or "200"**/
-  font-size: 20px;
-  margin-top: -10px;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+.cardTitle1:hover,.cardTitle2:hover,.cardTitle3:hover {
+  transition: all 1s ease-in-out;
+  text-decoration: none!important;
+  color:#3AAFA9;
+  box-shadow: 0px 0px 0px 2px #3AAFA9;
 }
-
-.cardTitle3 {
-  color: #424242;
-  font-weight: bold; /**bold or "200"**/
-  font-size: 20px;
-  margin-top: -10px;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+a:hover{
+  text-decoration:none !important;
 }
-
 button {
   background: #262626;
   height: 38px;
@@ -313,4 +307,5 @@ li {
 a {
   color: #42b983;
 }
+
 </style>

@@ -1,12 +1,12 @@
 <template>
     <v-footer height="auto">
         <tooltip/>
-        <v-container fluid class="pa-0 ma-0">  
-            <v-card flat tile class="indigo lighten-1 white--text text-xs-center">
+        <v-container fluid class="pa-0 ma-0">
+            <v-card flat tile class="white--text text-xs-center" color="black">
                 <v-container class="pa-3">
                     <v-btn v-popover:tooltip="'Project Repo'" round flat class="white--text">
                         <a href="https://www.github.com/jasonyip184/Cheetah" target="_blank">
-                            <img alt="GitHub Logo" height="40" width="40" src="../assets/githublogo.svg" />
+                            <i class="fab fa-github" style="font-size:2.5rem; color:#FF5138"></i>
                         </a>
                     </v-btn>
                     <v-btn v-popover:tooltip="'NUSMods'" round flat class="white--text">
@@ -14,29 +14,24 @@
                             <img alt="NUSMods Logo" height="40" width="100" src="../assets/nusmodslogo.svg" />
                         </a>
                     </v-btn>
-                    <v-btn v-popover:tooltip="'NUS Timetable Builder'" round flat class="white--text">
-                        <a href="https://webrb.nus.edu.sg/ctt/builder.aspx" target="_blank">
-                            <img alt="NUS Timetable Builder Logo" height="40" width="80" src="../assets/nuslogo.jpg" />
-                        </a>
-                    </v-btn>
+
                     <v-btn v-popover:tooltip="'Write to us!'" round flat class="white--text">
                         <a href="mailto:jasonyip.184@gmail.com">
-                            <img alt="Email Logo" height="25" width="40" src="../assets/emaillogo.png" />
+                            <i class="fas fa-envelope" style="font-size:2rem; color:#FF5138"></i>
                         </a>
                     </v-btn>
                 </v-container>
-        
+
                 <v-card-text class="white--text pt-0">
-                    NUS Module Demographics is a web application designed to be complementary to existing module planners such as NUSMods and NUSTimetable Builder.                                          
+                    NUS Module Demographics is a web application designed to be complementary to existing module planners such as NUSMods and NUSTimetable Builder.
                 </v-card-text>
-                
+
 
                 <v-divider></v-divider>
 
                 <v-card-text class="white--text pt-0">
-                    &copy;2019 — <strong>Developed by Team Cheetah</strong>
-                    <br />
-                    <p>BT3103 Y18/19 Sem 2 </p>
+                    &copy;2019 — <strong>Team Cheetah</strong>
+                    
                 </v-card-text>
             </v-card>
         </v-container>

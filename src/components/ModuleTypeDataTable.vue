@@ -12,7 +12,7 @@
         <div class="selectedModule">{{selectedModuleText}}</div>
       </b-row>
 
-      <b-row align-h="center">
+      <b-row align-h="center" v-show="!isInvalidInput">
         <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
           <b-button @click="updateCode" variant="success" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
         </router-link>
@@ -100,12 +100,12 @@
         beforeMount() {
             this.gridOptions = {};
             this.columnDefs = [
-                {headerName: 'Module Code', field: 'ModuleCode', filter: "agTextColumnFilter", width: 115, cellRenderer: "agGroupCellRenderer"},
-                {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter", width: 110},
-                {headerName: 'Module Type', field: 'Type', width: 115},
-                {headerName: 'Major of Students', field: 'Major', width: 130},
-                {headerName: 'Latest From', field: 'YearSem', width: 100},
-                {headerName: 'Assignments %', field: 'Assignments', filter: "agNumberColumnFilter", width: 115},
+                {headerName: 'Module Code', field: 'ModuleCode', filter: "agTextColumnFilter", width: 125, cellRenderer: "agGroupCellRenderer"},
+                {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter", width: 130},
+                {headerName: 'Module Type', field: 'Type', width: 135},
+                {headerName: 'Major of Students', field: 'Major', width: 150},
+                {headerName: 'Latest From', field: 'YearSem', width: 120},
+                {headerName: 'Assignments %', field: 'Assignments', filter: "agNumberColumnFilter", width: 135},
                 {headerName: 'Class Participation %', field: 'Class Participation', filter: "agNumberColumnFilter", width: 100},
                 {headerName: 'Project Work %', field: 'Project Work', filter: "agNumberColumnFilter", width: 105},
                 {headerName: 'Exams %', field: 'Exams', filter: "agNumberColumnFilter", width: 100},
@@ -235,7 +235,7 @@
     }
 
     .selectedModule {
-      color: #999999;
+      color: #3AAFA9 ;
       font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
       font-weight: "bold";
       font-size: 35px;
@@ -279,7 +279,7 @@
       font-size: 14px;
       margin-top: -2px;
     }
-    
+
     .button-1{
         width:140px;
         height:30px;

@@ -1,21 +1,24 @@
 <template>
   <div class="course_page">
+    <div>
+      <b-card
+        overlay
+        img-src="https://images.pexels.com/photos/159213/hall-congress-architecture-building-159213.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        img-alt="Card Image"
+        text-variant="white"
+        title="Course"
+        title-tag="h1"
+        img-height="350px"
+      >
+        <b-card-text>
+          Find out when your seniors are taking their modules. Are you taking a module too early?
+        </b-card-text>
+      </b-card>
+      </div>
     <b-container fluid class="content">
-      <b-row align-h="center">
-        <b-col cols="12" class="titlePosition">
-              <div class="moduleTitle"><font-awesome-icon icon="school" class="shiftLeft"/> Course</div>
-        </b-col>
-      </b-row>
-
-      <b-row align-h="center" class="description">
-        <b-col cols="9">
-          Discover modules other students from your (or any other) course are taking.<br/>
-          Know what are the popular modules your seniors completed, and plan to take them together with your friends.
-        </b-col>
-      </b-row>
-      </br></br></br>
+      </br>
       <CourseDataTable/>
-      <br/><br/><br/>
+      <br/><br/>
     </b-container>
     <Footer/>
   </div>
@@ -86,4 +89,20 @@ li {
 a {
   color: #42b983;
 }
+
+/* ---------CSS for banner------------- */
+.card-img{
+  object-fit:cover;
+  object-position:center;
+  filter: brightness(40%);
+}
+h1{
+  color:white;
+  margin-top:7rem;
+  font-size:4rem;
+}
+.cart-text{
+  font-size:2rem;
+}
+
 </style>

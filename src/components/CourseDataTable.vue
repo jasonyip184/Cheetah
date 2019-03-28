@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <b-row align-h="center">
         <div class="selectedHeader">
             <img v-b-popover.hover.topleft="tooltip" alt="Help" height="16" width="16" src="@/assets/help.png" />
@@ -12,7 +11,7 @@
           <div class="selectedModule">{{selectedModuleText}}</div>
         </b-row>
 
-        <b-row align-h="center">
+        <b-row align-h="center" v-show="!isInvalidInput">
           <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
             <b-button @click="updateCode" variant="success" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
           </router-link>
@@ -100,13 +99,13 @@
         beforeMount() {
             this.gridOptions = {};
             this.columnDefs = [
-                {headerName: 'Module Code', field: 'ModuleCode', filter: "agTextColumnFilter", width: 140, cellRenderer: "agGroupCellRenderer"},
-                {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter"},
+                {headerName: 'Module Code', field: 'ModuleCode', filter: "agTextColumnFilter", width: 150, cellRenderer: "agGroupCellRenderer"},
+                {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter",width: 250},
                 {headerName: 'Module Department', field: 'Department'},
                 {headerName: 'Major of Students', field: 'Major'},
-                {headerName: 'Latest From', field: 'YearSem', width: 130},
-                {headerName: 'Year', field: 'Year', width: 90},
-                {headerName: 'Enrolment', field: 'TotalEnrolment', filter: "agNumberColumnFilter", width: 120},
+                {headerName: 'Latest From', field: 'YearSem', width: 160},
+                {headerName: 'Year', field: 'Year', width: 100},
+                {headerName: 'Enrolment', field: 'TotalEnrolment', filter: "agNumberColumnFilter", width: 140},
             ];
 
             this.rowData = course_data;
@@ -232,7 +231,7 @@
     }
 
     .selectedModule {
-      color: #999999;
+      color: #3AAFA9 ;
       font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
       font-weight: "bold";
       font-size: 35px;
@@ -240,6 +239,7 @@
       text-align: center;
       margin-top: -5px;
       margin-bottom: 0px;
+      font-weight:600;
       /**margin: 10px auto 10px;**/
     }
 
@@ -344,4 +344,35 @@
     ul {
         text-align: right;
     }
+    .ag-theme-balham .ag-floating-filter-body input:disabled{
+      color: rgba(0, 0, 0, 0.38) !important;
+      background-color: #ebebeb !important;
+      border:none !important;
+      /* round the corners */
+        -webkit-border-radius: 0px !important;
+         -moz-border-radius: 0px !important;
+              border-radius: 0px !important;
+
+      /* make it glow! */
+      -webkit-box-shadow: 0px 0px 0px #4195fc !important;
+         -moz-box-shadow: 0px 0px 0px #4195fc !important;
+              box-shadow: 0px 0px 0px #4195fc !important; /* some variation of blue for the shadow */
+    }
+    .ag-floating-filter-input{
+      border: 1px solid #4195fc; /* some kind of blue border */
+
+    /* other CSS styles */
+
+    /* round the corners */
+      -webkit-border-radius: 1px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+
+
+    /* make it glow! */
+    -webkit-box-shadow: 0px 0px 2px #4195fc;
+       -moz-box-shadow: 0px 0px 2px #4195fc;
+            box-shadow: 0px 0px 2px #4195fc; /* some variation of blue for the shadow */
+    }
+
 </style>
