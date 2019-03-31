@@ -48,8 +48,8 @@ export default {
               "theme": "fusion",
               "showLegend": "1",
               "legendItemFontSize": "12",
-              //"bgColor": "#FAF8EA",
-              //"bgAlpha": "40",
+              // "bgColor": "#FAF8EA",
+              "bgAlpha": "40",
 
           },
           "data": null,

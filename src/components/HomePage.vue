@@ -19,7 +19,7 @@
                   </router-link>
                   <b-card-text>
                     <p class="text-left coursetext">
-                      Find out when seniors are taking their Modules, and if you are taking it at a different time.
+                      Find out when seniors are taking their Modules, and plan when is the best time to take modules.
                     </p>
                   </b-card-text>
                 </b-card-body>

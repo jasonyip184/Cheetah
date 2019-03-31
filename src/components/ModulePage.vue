@@ -15,11 +15,14 @@
 
         <b-col class="chartCol" cols="4"> <!-- implied cols="4" as it is even-->
           <major-chart v-bind:code="toUpperCase(code)"></major-chart>
+          <div class="disclaimer">Based on the most recent semester that the module was offered.</div>
           <requirements-chart v-bind:code="toUpperCase(code)"></requirements-chart>
+          <div class="disclaimer">Based on the most recent semester that the module was offered.</div>
         </b-col>
 
         <b-col class="chartCol" cols="4"> <!-- implied cols="4" as it is even-->
           <year-chart v-bind:code="toUpperCase(code)"></year-chart>
+          <div class="disclaimer">Based on the most recent semester that the module was offered.</div>
           <industry-chart v-bind:code="toUpperCase(code)"></industry-chart>
         </b-col>
       </b-row>
@@ -101,12 +104,19 @@
 
 .moduleInfo{
   text-align: left;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif; /**not working**/
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 .chartCol {
   width: 100%;
   margin-top: -20px;
+  text-align: left;
+}
+
+.disclaimer{
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #838383
 }
 
 h3 {

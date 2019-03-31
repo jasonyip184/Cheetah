@@ -104,7 +104,7 @@
                 {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter", width: 130},
                 {headerName: 'Module Type', field: 'Type', width: 135},
                 {headerName: 'Major of Students', field: 'Major', width: 150},
-                {headerName: 'Latest From', field: 'YearSem', width: 120},
+                {headerName: 'Sem Offered', field: 'YearSem', width: 120},
                 {headerName: 'Assignments %', field: 'Assignments', filter: "agNumberColumnFilter", width: 135},
                 {headerName: 'Class Participation %', field: 'Class Participation', filter: "agNumberColumnFilter", width: 100},
                 {headerName: 'Project Work %', field: 'Project Work', filter: "agNumberColumnFilter", width: 105},
@@ -346,5 +346,11 @@
 
     ul {
         text-align: right;
+    }
+    .ag-filter input[type="text"]{
+      height:1.6rem;
+    }
+    .ag-menu{
+      min-height:250px;
     }
 </style>

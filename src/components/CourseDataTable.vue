@@ -1,4 +1,4 @@
-<template>
+  <template>
     <div>
         <b-row align-h="center">
         <div class="selectedHeader">
@@ -103,7 +103,7 @@
                 {headerName: 'Module Title', field: 'ModuleTitle', filter: "agTextColumnFilter",width: 250},
                 {headerName: 'Module Department', field: 'Department'},
                 {headerName: 'Major of Students', field: 'Major'},
-                {headerName: 'Latest From', field: 'YearSem', width: 160},
+                {headerName: 'Sem Offered', field: 'YearSem', width: 160},
                 {headerName: 'Year', field: 'Year', width: 100},
                 {headerName: 'Enrolment', field: 'TotalEnrolment', filter: "agNumberColumnFilter", width: 140},
             ];
