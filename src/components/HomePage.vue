@@ -62,7 +62,7 @@
                   </router-link>
                   <b-card-text>
                     <p class="text-left industrytext">
-                      Discover Modules your alumni have taken based on their jobs and industries.
+                      Discover Modules your alumni have taken based on their industries and only take relevant modules.
                     </p>
                   </b-card-text>
                 </b-card-body>

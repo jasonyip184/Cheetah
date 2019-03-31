@@ -23,7 +23,7 @@
                 </v-container>
 
                 <v-card-text class="white--text pt-0">
-                    NUS Module Demographics is a web application designed to be complementary to existing module planners such as NUSMods and NUSTimetable Builder.
+                    Modules+ is a web application designed to be complementary to existing module planners such as NUSMods and NUSTimetable Builder.
                 </v-card-text>
 
 

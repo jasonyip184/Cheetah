@@ -131,10 +131,6 @@
                     return (
                     '<div style="padding:1%; text-align:left;">'+
                         '   <span style="white-space:normal; word-break:break-all;"> <b>Module Description:</b> '+moduledesc+'</span><br/><br/>'+
-                        '   <div class="button-1">'+
-                        '       <div class="eff-1"></div>'+
-                        '       <a href="#/module">'+ "Find out more" +'</a>'+
-                        '   </div>'+
                         '   <ul>'+
                         '       <li><h6> Keywords:         </h6></li>'+
                         '       <li><div class="button-2">'+

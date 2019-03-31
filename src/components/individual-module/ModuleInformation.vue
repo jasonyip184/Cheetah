@@ -255,27 +255,20 @@ export default {
 button {
   background: #FFFFFF;
   height: 38px;
-  border: 1px;
-  border-radius: 3px;
+  width: 200px;
   border-color: #007BFF;
-  /**
-  border-radius: 2px;
-  border: #fff; none
-  color: #fff;
-  text-emphasis-color: #E27979;
-  padding: 10px;
-  margin: 5px;**/
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: auto;
 }
 
 .buttontext {
   color: #007BFF; /**#F9F9F9;**/
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 400; /**330;**/
-  font-size: 14px;
-}
-
-.button {
-  margin-top: 7px;
-  /**margin-left: 50px;**/
+  font-size: 12px;
+  margin: auto;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 </style>
