@@ -62,7 +62,7 @@
                   </router-link>
                   <b-card-text>
                     <p class="text-left industrytext">
-                      Discover Modules your alumni have taken based on their industries and only take relevant modules.
+                      Discover Modules seniors have taken based on their industries and plan your modules.
                     </p>
                   </b-card-text>
                 </b-card-body>
