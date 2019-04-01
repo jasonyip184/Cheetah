@@ -110,7 +110,7 @@
 
       <br/><br/>
     </b-container>
-    <br/><br/><br/>
+    <br/>
     <Footer/>
 
     <v-tour name="myTour" :steps="steps" class="tourbox"></v-tour>
@@ -137,18 +137,21 @@
             target: '.banner',
             content: `Welcome to Modules+. Would you like a Tour?`
           },
-          {
-            target: '.coursetext',
-            content: 'Click to find out more about people in your course',
-          },
-          {
-            target: '.moduletext',
-            content: 'Click to discover modules by their types',
-          },
-          {
-            target: '.industrytext',
-            content: 'Click to find out which modules are relevant for an industry',
-          },
+          // {
+          //   target: '.coursetext',
+          //   content: 'Click to find out more about people in your course',
+          //   params: {
+          //     placement: 'bottom'
+          //   }
+          // },
+          // {
+          //   target: '.moduletext',
+          //   content: 'Click to discover modules by their types',
+          // },
+          // {
+          //   target: '.industrytext',
+          //   content: 'Click to find out which modules are relevant for an industry',
+          // },
           {
             target: '#inputModuleCode',
             content: `Search for a Module code here`
