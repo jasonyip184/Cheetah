@@ -138,10 +138,6 @@
             content: `Welcome to Modules+. Would you like a Tour?`
           },
           {
-            target: '#inputModuleCode',
-            content: `Search for a Module code here`
-          },
-          {
             target: '.coursetext',
             content: 'Click to find out more about people in your course',
           },
@@ -152,6 +148,10 @@
           {
             target: '.industrytext',
             content: 'Click to find out which modules are relevant for an industry',
+          },
+          {
+            target: '#inputModuleCode',
+            content: `Search for a Module code here`
           },
         ],
         carouselHTML: `
