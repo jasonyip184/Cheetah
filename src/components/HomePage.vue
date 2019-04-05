@@ -197,9 +197,18 @@
       }
     },
     mounted: function () {
+      loadPropCode()
       this.$tours['myTour'].start()
     },
     methods: {
+      loadPropCode(){
+        if (this.code == null) {
+          return ''
+        }
+        else {
+          this.code == this.code
+        }
+      },
       toUpperCase(text) {
         return text.toUpperCase();
       },
@@ -231,7 +240,7 @@
       isInvalidInputR(){
         /**return ''**/
         if (this.isInvalidInput) {
-          return ''
+          return 'click'
         }
         else {
           return 'click'

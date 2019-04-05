@@ -7,6 +7,7 @@ export default {
     name: 'major-chart',
     props: {
       code: String,
+      updatedmajor: Boolean,
     },
     data () {
         return {
@@ -43,6 +44,10 @@ export default {
       fillData() {
         this.datasource.data = this.moduledata[this.code]['Faculty'];
       },
+      refreshData() {
+        this.fillData();
+        this.$emit('update', true);
+      }
     }
 }
 </script>
@@ -50,6 +55,7 @@ export default {
 <template>
     <div id="app">
       <div id="chart-container">
+        <b-button @click="refreshData" variant="light" size="sm" block v-show="!updatedmajor"><div class="buttontext">Update Chart</div></b-button>
         <fusioncharts
           :type="type"
           :width="width"
@@ -71,6 +77,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.buttontext {
+  color: #FF5138; /**#007BFF;**/
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 500; /**330;**/
+  font-size: 16px;
+  margin: auto;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
 h1, h2 {

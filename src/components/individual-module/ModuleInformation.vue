@@ -2,6 +2,7 @@
 
 <script>
 import jsondata from '@/data/module_data.json';
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Overview',
@@ -9,15 +10,17 @@ export default {
     code: String,
     description: String,
     lessons: Array,
+    prereq: Array,
   },
   mounted() {
-    this.fillDescriptionData();
+    this.fillBreakdownData();
   },
   data () {
     return {
       code: this.code,
       description: this.description,
       lessons: this.lessons,
+      prereq: this.prereq,
       moduledata: jsondata,
       renderAt: "chart-container",
       width: "100%",
@@ -60,10 +63,36 @@ export default {
       newTab: function () {
           window.open("https://nusmods.com/modules/" + this.code);
       },
-      fillDescriptionData() {
+      fillBreakdownData() {
         this.datasource.data = this.moduledata[this.code]['Breakdown']
       },
-    }
+      ...mapMutations([
+        'UPDATE_MODULE_CODE'
+      ]),
+      updateCode(module) {
+        this.UPDATE_MODULE_CODE(module);
+        //this.code = module;
+
+        this.$emit('refresh', module);
+        this.fillBreakdownData();
+        //eventBus.$emit('mod-refreshed')
+        //this.$root.$emit('refreshing', module);
+        //this.$root.$emit('refresh')
+      }
+  },
+  computed: {
+    isInvalidInput(){
+      return (this.code == 'None')
+    },
+    isInvalidInputR(){
+      if (this.code == 'None') {
+        return ''
+      }
+      else {
+        return 'click'
+      }
+    },
+  }
 }
 </script>
 
@@ -78,6 +107,17 @@ export default {
           {{description}}
         </p>
       </body>
+
+      <h1 class="Title">Prerequisite</h1>
+
+      <b-container fluid class="prereq-section">
+        <body class="paragraph" v-if="!prereq.length">None</body>
+
+        <template v-else v-for="module in prereq" >
+          <b-button @click="updateCode(module)" variant="light" block><div class="prereqbuttontext">{{module}}</div></b-button>
+        </template>
+      </b-container>
+
 
       <h1 class="Title">Lessons</h1>
 
@@ -164,9 +204,8 @@ export default {
       </b-container>
       <b-row align-h="end" class="button">
         <!--<b-button size="sm" variant="outline-primary" @click="newTab"><div class="buttontext">Add to timetable in NUSMods</div></b-button>-->
-        <button @click="newTab"><div class="buttontext">Add to timetable in NUSMods</div></button>
+        <div class="shiftright"><button @click="newTab"><div class="nusmodbuttontext">Add to timetable in NUSMods</div></button></div>
       </b-row>
-
 
 
       <h1 class="Title">Assessment Breakdown</h1>
@@ -180,6 +219,10 @@ export default {
           >
         </fusioncharts>
       </div>
+
+
+
+
 
     </div>
   </div>
@@ -223,6 +266,27 @@ export default {
     margin: 10px auto 10px;
 }
 
+.prereq-section {
+  margin-top: 20px;
+  margin-left: -14px
+}
+
+.searchButton {
+  background: #E1E1E1;
+  height: 30px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: #FF4040;
+  border-radius: 2px;
+  text-align: center;
+  /**
+  color: #fff;
+  text-emphasis-color: #E27979;
+  padding: 10px;
+  margin: 5px;**/
+}
+
 .lessons-table {
   margin-left: -50px;
 }
@@ -262,11 +326,26 @@ button {
   margin: auto;
 }
 
-.buttontext {
-  color: #007BFF; /**#F9F9F9;**/
+.prereqbuttontext {
+  color: #007BFF; /**#007BFF;**/
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 400; /**330;**/
-  font-size: 12px;
+  font-size: 16px;
+  margin: auto;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.shiftright {
+  margin-left: 20px
+}
+
+
+.nusmodbuttontext {
+  color: #007BFF; /**#007BFF;**/
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 400; /**330;**/
+  font-size: 14px;
   margin: auto;
   padding-left: 3%;
   padding-right: 3%;
