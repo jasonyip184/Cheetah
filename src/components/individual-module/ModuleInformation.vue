@@ -95,19 +95,7 @@ export default {
         //this.$root.$emit('refresh')
      },
   },
-  computed: {
-    isInvalidInput(){
-      return (this.code == 'None')
-    },
-    isInvalidInputR(){
-      if (this.code == 'None') {
-        return ''
-      }
-      else {
-        return 'click'
-      }
-    },
-  }
+
 }
 </script>
 

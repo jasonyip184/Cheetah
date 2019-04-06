@@ -240,7 +240,7 @@
       isInvalidInputR(){
         /**return ''**/
         if (this.isInvalidInput) {
-          return 'click'
+          return ''
         }
         else {
           return 'click'
