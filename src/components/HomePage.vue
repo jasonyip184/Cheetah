@@ -1,8 +1,67 @@
 <template>
   <div class="home_page">
+    <!-- Current banner, comment out like this -->
     <div v-html="carouselHTML"></div>
-    <!-- Use this whole chunk for the cards and module input field -->
-    <br/><br/>
+    <!-- Alternative to current banner, need to:
+     1) change image sources to be exact same height for all 3
+     > img-height doesn't work, I don't know why
+     2) add a "darken" layer to the images before saving it (similar effect to current banner) to same/ another link
+     > so white text will stand out more
+     3) change content position and text style format of each banner "slide" in styles below
+     4) header tabs portion does not cover banner, make it darker (currently light grey) or make it cover banner?
+     This banner works when you leave and come back to the home page + can delete A LOT of current code
+     banner pauses when you hover over it, no-hover-pause is supposed to solve it but doesnt work, interval = "1000" = 1sec
+    -->
+    <b-carousel
+      id="category-banner"
+      fade="true"
+      indicators="true"
+      no-hover-pause="true"
+      :interval="4000"
+      img-width="1024"
+      img-height="300px"
+    >
+
+      <b-carousel-slide
+        img-src="https://www.nicholaswan.me/images/cheetah/computing.png"
+        img-height="300px"
+      >
+        <div class = "shiftTop">
+          <div class="bannerHeader">Course</div>
+          <div class="bannerDescription">View modules done by seniors in your course</div>
+          <br/>
+          <button class="button"> <a href="#/modtype"><div class='exploreButtonText'>Explore More</div></a> </button>
+        </div>
+      </b-carousel-slide>
+
+      <b-carousel-slide
+        img-src="https://www.nicholaswan.me/images/cheetah/arts.png"
+        img-height="300px"
+      >
+          <div class = "shiftTop">
+            <div class="bannerHeader">Module Type</div>
+            <div class="bannerDescription">View modules by type (e.g. language, GE modules)</div>
+            <br/>
+            <button class="button"> <a href="#/modtype"><div class='exploreButtonText'>Explore More</div></a> </button>
+          </div>
+      </b-carousel-slide>
+
+      <b-carousel-slide
+        img-src="https://www.nicholaswan.me/images/cheetah/industry.png"
+        img-height="300px"
+      >
+        <div class = "shiftTop">
+          <div class="bannerHeader">Industry</div>
+          <div class="bannerDescription">View modules taken by graduates in an industry</div>
+          <br/>
+          <button class="button"> <a href="#/modtype"><div class='exploreButtonText'>Explore More</div></a> </button>
+        </div>
+      </b-carousel-slide>
+
+    </b-carousel>
+    <!-- End of alternative banner -->
+
+    <br/>
     <b-container fluid class="content">
       <b-row align-h="center">
 
@@ -256,6 +315,31 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+/**for content in banner, controls placement from BOTTOM**/
+.shiftTop {
+  margin-bottom: 200px;
+}
+
+/**change for content in banner**/
+.bannerHeader {
+  font-family: Arial;
+  font-weight: "bold"; /**330;**/
+  font-size: 64px;
+  color: #F9F9F9;
+}
+
+/**change for content in banner**/
+.bannerDescription {
+  font-family: Avenir;
+  font-weight: 300; /**330;**/
+  font-size: 20px;
+  color: #CDCCCC;
+}
+
+.exploreButtonText {
+  color: #F9F9F9;
+}
 
 .categoryHeader {
   color: #003d7c;
