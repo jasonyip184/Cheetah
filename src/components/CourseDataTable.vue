@@ -11,9 +11,9 @@
           <div class="selectedModule">{{selectedModuleText}}</div>
         </b-row>
 
-        <b-row align-h="center" v-show="!isInvalidInput">
-          <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
-            <b-button @click="updateCode" variant="success" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
+        <b-row align-h="center" v-show="!isSelectionMade">
+          <router-link :to="{ name: 'module' }" :event="isInvalidInputL">
+            <b-button @click="updateCode" variant="success" :disabled="!isValidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
           </router-link>
         </b-row>
 
@@ -66,12 +66,14 @@
 <script>
     import {AgGridVue} from "ag-grid-vue";
     import course_data from '../data/course_data.json';
+    import module_data from '@/data/module_data.json';
     import { mapMutations } from 'vuex'
 
     export default {
         name: 'App',
         data() {
             return {
+                modulelist: module_data['modulelist'],
                 selectedRowSize: "10", //default value for row/page size using my new filter
                 selectedModuleCode: 'None',
                 selectedModuleText: 'None',
@@ -195,15 +197,18 @@
             }
         },
         computed: {
-          isInvalidInput(){
+          isSelectionMade(){
             return (this.selectedModuleCode == 'None')
           },
-          isInvalidInputR(){
-            if (this.selectedModuleCode == 'None') {
-              return ''
+          isValidInput(){
+            return (this.modulelist.includes(this.selectedModuleCode))
+          },
+          isInvalidInputL(){
+            if (this.modulelist.includes(this.selectedModuleCode)) {
+              return 'click'
             }
             else {
-              return 'click'
+              return ''
             }
           },
         }

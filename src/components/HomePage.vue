@@ -30,7 +30,7 @@
           <div class="bannerHeader">Course</div>
           <div class="bannerDescription">View modules done by seniors in your course</div>
           <br/>
-          <button class="button"> <a href="#/modtype"><div class='exploreButtonText'>Explore More</div></a> </button>
+          <button class="button"> <a href="#/course"><div class='exploreButtonText'>Explore More</div></a> </button>
         </div>
       </b-carousel-slide>
 
@@ -54,7 +54,7 @@
           <div class="bannerHeader">Industry</div>
           <div class="bannerDescription">View modules taken by graduates in an industry</div>
           <br/>
-          <button class="button"> <a href="#/modtype"><div class='exploreButtonText'>Explore More</div></a> </button>
+          <button class="button"> <a href="#/industry"><div class='exploreButtonText'>Explore More</div></a> </button>
         </div>
       </b-carousel-slide>
 
@@ -148,7 +148,7 @@
               placeholder="Enter Module Code (e.g. ACC1002)"
             />
             <b-input-group-append>
-              <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
+              <router-link :to="{ name: 'module' }" :event="isInvalidInputL">
                 <!-- <b-button :disabled="isInvalidInput" variant="dark" @click="updateCode">Search</b-button> -->
                 <button :disabled="isInvalidInput" @click="updateCode"><div class="buttontext">Search</div></button>
               </router-link>
@@ -179,14 +179,14 @@
 
 <script>
   import Footer from "@/components/Footer.vue";
-  import jsondata from '@/data/module_data.json';
+  import module_data from '@/data/module_data.json';
   import { mapMutations } from 'vuex'  // Add mapMutations
 
   export default {
 
     data() {
       return {
-        modulelist: jsondata['modulelist'],
+        modulelist: module_data['modulelist'],
         isInvalidInput: true,
         code: '',
 
@@ -296,8 +296,7 @@
           }
         }
       },
-      isInvalidInputR(){
-        /**return ''**/
+      isInvalidInputL(){
         if (this.isInvalidInput) {
           return ''
         }
