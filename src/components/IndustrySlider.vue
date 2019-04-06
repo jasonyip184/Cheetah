@@ -33,7 +33,7 @@ export default {
           >
             <b-carousel-slide
               caption="First slide"
-              img-src="require('@/assets/companies/a1.jpg')"
+              img-src="../assets/companies/a1.jpg"
               width="100"
               height="50"
             ></b-carousel-slide>
@@ -45,13 +45,13 @@ export default {
             ></b-carousel-slide>
             <b-carousel-slide
               caption="Third Slide"
-              img-src="~/static/a3.jpg"
+              img-src="https://picsum.photos/1024/480/?image=21"
               width="100"
               height="50"
             ></b-carousel-slide>
             <b-carousel-slide
               caption="Fourth Slide"
-              img-src="https://picsum.photos/1024/480/?image=23"
+              img-src="../assets/companies/a3.jpg"
               width="100"
               height="50"
             ></b-carousel-slide>
