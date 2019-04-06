@@ -217,9 +217,9 @@ export default {
 
         </b-row>
       </b-container>
-      <b-row align-h="end" class="button">
-        <!--<b-button size="sm" variant="outline-primary" @click="newTab"><div class="buttontext">Add to timetable in NUSMods</div></b-button>-->
-        <div class="shiftright"><button @click="newTab"><div class="nusmodbuttontext">Add to timetable in NUSMods</div></button></div>
+      <b-row align-h="end">
+        <b-button size="sm" variant="success" @click="newTab"><div class="nusmodbuttontext">Add to timetable in NUSMods</div></b-button>
+        <!--<div class="shiftright"><button @click="newTab"><div class="nusmodbuttontext">Add to timetable in NUSMods</div></button></div>-->
       </b-row>
 
 
@@ -291,7 +291,6 @@ export default {
     text-align: "right";
     margin: 10px auto 10px;
 }
-
 
 
 .searchButton {
@@ -370,13 +369,13 @@ button {
 }
 
 .nusmodbuttontext {
-  color: #007BFF; /**#007BFF;**/
+  color: #FAFAFA; /**#007BFF;**/
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 400; /**330;**/
   font-size: 14px;
-  margin: auto;
+  /**margin: auto;
   padding-left: 3%;
-  padding-right: 3%;
+  padding-right: 3%;**/
 }
 
 .updatebuttontext {
