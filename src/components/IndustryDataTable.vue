@@ -19,6 +19,9 @@
 
       </b-row>
 
+      <b-row align-h="center">
+        <industry-slider v-bind:industry="industry"></industry-slider>
+      </b-row>
 
       <b-row align-h="end">
         <b-col cols="2" align-h="start">
@@ -68,6 +71,7 @@
 <script>
     import {AgGridVue} from "ag-grid-vue";
     import industry_data from '../data/industry_data.json';
+    import industry_slider from '@/components/IndustrySlider.vue';
     import { mapMutations } from 'vuex'
 
     export default {
@@ -77,6 +81,7 @@
                 selectedRowSize: "10", //default value for row/page size
                 selectedModuleCode: 'None',
                 selectedModuleText: 'None',
+                industry: 'None',
                 tooltip: {
                   title: 'User Help',
                   content:
@@ -96,6 +101,7 @@
             }
         },
         components: {
+            'industry-slider': industry_slider,
             AgGridVue
         },
         beforeMount() {
@@ -129,15 +135,18 @@
                 var selectedRows = this.gridApi.getSelectedRows();
                 var selectedRowsStringCode = "";
                 var selectedRowsStringText = "";
+                var selectedRowsStringIndustry = "";
                 selectedRows.forEach(function(selectedRow, index) { //flexible also for multiple selection
                   if (index !== 0) {
                     selectedRowsString += ", ";
                   }
                   selectedRowsStringCode += selectedRow.ModuleCode;
                   selectedRowsStringText += selectedRow.ModuleCode + ' ' + selectedRow.ModuleTitle
+                  selectedRowsStringIndustry += selectedRow.Industry
                 });
                 this.selectedModuleCode = selectedRowsStringCode
                 this.selectedModuleText = selectedRowsStringText
+                this.industry = selectedRowsStringIndustry
             },
             onPageSizeChanged(newPageSize) {
                 this.gridApi.paginationSetPageSize(this.selectedRowSize); //for new row size filter
