@@ -12,16 +12,71 @@
         <div class="selectedModule">{{selectedModuleText}}</div>
       </b-row>
 
-      <b-row align-h="center" v-show="!isInvalidInput">
-        <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
-          <b-button @click="updateCode" variant="success" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
+      <b-row align-h="center" v-show="!isSelectionMade">
+        <router-link :to="{ name: 'module' }" :event="isInvalidInputL">
+          <b-button @click="updateCode" variant="success" :disabled="!isValidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
         </router-link>
-
       </b-row>
 
+      <b-row align-h="center" v-show="isAdvertising">
+        <b-col cols="3">
+          <b-carousel
+              id="advertising-industry-carousel"
+              fade
+              controls
+              indicators
+              :interval="3000"
+          >
+              <a href="https://www.ogilvy.com/careers/" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/advertising/ogilvy.png" v-b-popover.hover="'Ogilvy is a New York City-based British advertising, marketing, and public relations agency. It was founded in 1850 by Edmund Mather as a London-based agency. In 1964, the firm became known as Ogilvy & Mather after merging with a New York City agency that was founded in 1948 by David Ogilvy.'" title="Ogilvy"></b-carousel-slide></a>
+              <a href="https://www.dentsuaegisnetwork.com/us/en/careers" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/advertising/dentsu.png" v-b-popover.hover="'Dentsu Inc. is a Japanese international advertising and public relations joint stock company headquartered in Tokyo. Dentsu is currently the fifth largest advertising agency network in the world in terms of worldwide revenues.'" title="Dentsu"></b-carousel-slide></a>
+              <a href="https://www.wpp.com/careers" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/advertising/wpp.png" v-b-popover.hover="'WPP plc is a British multinational advertising and public relations company with its main management office in London, England, and its executive office in Dublin, Ireland.'" title="WPP"></b-carousel-slide></a>
+              <a href="http://jobs.jobvite.com/bbdo/jobs" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/advertising/bbdo.png" v-b-popover.hover="'BBDO is a worldwide advertising agency network, with its headquarters in New York City. The agency began in 1891 with George Batten\'s Batten Company, and later in 1928, through a merger of BDO and Batten Co. the agency became Batten, Barton, Durstine & Osborn.'" title="BBDO" placement="right"></b-carousel-slide></a>
+              <a href="https://www.publicisgroupe.com/en/the-groupe/careers/job-opportunities" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/advertising/publicis.png" v-b-popover.hover="'Publicis Groupe is a French multinational advertising and public relations company, and is the oldest and one of the largest marketing and communications companies in the world, by revenue, headquartered in Paris.'" title="Publicis"></b-carousel-slide></a>
+          </b-carousel>
+        </b-col>
+      </b-row>
+
+      <b-row align-h="center" v-show="isFinance">
+        <b-col cols="3">
+          <b-carousel
+              id="finance-industry-carousel"
+              fade
+              controls
+              indicators
+              :interval="3000"
+          >
+              <a href="https://www.ubs.com/global/en/careers.html" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/finance/ubs.png" v-b-popover.hover="'UBS Group AG is a Swiss multinational investment bank and financial services company founded and based in Switzerland. Co-headquartered in the cities of Zürich and Basel, it maintains a presence in all major financial centers as the largest Swiss banking institution in the world.'" title="UBS" placement="right"></b-carousel-slide></a>
+              <a href="https://group.bnpparibas/en/careers" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/finance/bnp.png" v-b-popover.hover="'BNP Paribas S.A. is a French international banking group. It is the world\'s 8th largest bank by total assets, and currently operates with a presence in 77 countries.'" title="BNP Paribas" placement="right"></b-carousel-slide></a>
+              <a href="http://www.citigroup.com/Careers/index/#/" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/finance/citi.png" v-b-popover.hover="'Citigroup Inc. or Citi is an American multinational investment bank and financial services corporation headquartered in New York City. The company was formed by the merger of banking giant Citicorp and financial conglomerate Travelers Group in 1998; Travelers was subsequently spun off from the company in 2002.'" title="Citi" placement="right"></b-carousel-slide></a>
+              <a href="https://www.sc.com/en/careers/" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/finance/standard.png" v-b-popover.hover="'Standard Chartered PLC is a British multinational banking and financial services company headquartered in London, England. It operates a network of more than 1,200 branches and outlets across more than 70 countries and employs around 87,000 people.'" title="Standard Chartered" placement="right"></b-carousel-slide></a>
+              <a href="https://www.hsbc.com/careers" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/finance/hsbc.png" v-b-popover.hover="'HSBC, officially known as The Hongkong and Shanghai Banking Corporation Limited, is a wholly owned subsidiary of HSBC, the largest bank in Hong Kong, and operates branches and offices throughout the Asia Pacific region, and in other countries around the world.'" title="HSBC" placement="right"></b-carousel-slide></a>
+          </b-carousel>
+        </b-col>
+      </b-row>
+
+      <b-row align-h="center" v-show="isHealthcare">
+        <b-col cols="3">
+          <b-carousel
+              id="healthcare-industry-carousel"
+              fade
+              controls
+              indicators
+              :interval="3000"
+          >
+              <a href="https://www.rafflesmedicalgroup.com/careers-at-raffles" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/healthcare/raffles.png" v-b-popover.hover="'Raffles Medical Group, is a private healthcare provider in Asia, operating medical facilities in thirteen cities in Singapore, China, Japan, Vietnam and Cambodia.'" title="Raffles Medical Group" placement="right"></b-carousel-slide></a>
+              <a href="https://www.mckesson.com/careers/" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/healthcare/mckesson.png" v-b-popover.hover="'McKesson Corporation is an American company distributing pharmaceuticals and providing health information technology, medical supplies, and care management tools. The company had revenues of $208.4 billion in 2018.'" title="McKesson Corporation" placement="right"></b-carousel-slide></a>
+              <a href="https://www.jobs.abbott/us/en" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/healthcare/abbott.png" v-b-popover.hover="'Abbott Laboratories is an American health care company with headquarters in Lake Bluff, Illinois, United States.'" title="Abbott Laboratories" placement="right"></b-carousel-slide></a>
+              <a href="https://www.singhealth.com.sg/careers/opportunities-at-singhealth" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/healthcare/singhealth.png" v-b-popover.hover="'SingHealth is Singapore\'s largest group of healthcare institutions. The group was formed in 2000 and consists of four public hospitals, five national specialty centres and a network of eight polyclinics.'" title="SingHealth" placement="right"></b-carousel-slide></a>
+              <a href="https://www.medtronic.com/us-en/about/careers.html" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/healthcare/medtronic.png" v-b-popover.hover="'Medtronic plc is the world\'s largest medical device company that generates the majority of its sales and profits from the U.S. healthcare system but is headquartered on the island of Ireland for tax purposes. Medtronic has an operational and executive headquarters in Fridley, Minnesota in the U.S.'" title="Medtronic" placement="right"></b-carousel-slide></a>
+          </b-carousel>
+        </b-col>
+      </b-row>
+
+      <!--
       <b-row align-h="center">
         <industry-slider v-bind:industry="industry"></industry-slider>
       </b-row>
+      -->
 
       <b-row align-h="end">
         <b-col cols="2" align-h="start">
@@ -71,13 +126,15 @@
 <script>
     import {AgGridVue} from "ag-grid-vue";
     import industry_data from '../data/industry_data.json';
-    import industry_slider from '@/components/IndustrySlider.vue';
+    import module_data from '@/data/module_data.json';
+    //import industry_slider from '@/components/IndustrySlider.vue';
     import { mapMutations } from 'vuex'
 
     export default {
         name: 'App',
         data() {
             return {
+                modulelist: module_data['modulelist'],
                 selectedRowSize: "10", //default value for row/page size
                 selectedModuleCode: 'None',
                 selectedModuleText: 'None',
@@ -101,7 +158,7 @@
             }
         },
         components: {
-            'industry-slider': industry_slider,
+            //'industry-slider': industry_slider,
             AgGridVue
         },
         beforeMount() {
@@ -156,21 +213,34 @@
             ]),
             updateCode() {
               this.UPDATE_MODULE_CODE(this.selectedModuleCode)
-            }
+            },
         },
         computed: {
-          isInvalidInput(){
+          isSelectionMade(){
             return (this.selectedModuleCode == 'None')
           },
-          isInvalidInputR(){
-            if (this.selectedModuleCode == 'None') {
-              return ''
-            }
-            else {
+          isValidInput(){
+            return (this.modulelist.includes(this.selectedModuleCode))
+          },
+          isInvalidInputL(){
+            if (this.modulelist.includes(this.selectedModuleCode)) {
               return 'click'
             }
+            else {
+              return ''
+            }
           },
-        }
+          isHealthcare(){
+              return (this.industry == 'Healthcare')
+          },
+          isFinance(){
+              return (this.industry == 'Financial and Insurance')
+          },
+          isAdvertising(){
+              return (this.industry == 'Advertisting, Media, Public Relations')
+          },
+      }
+
     };
 
 
@@ -179,6 +249,14 @@
 <style lang="scss">
     @import "../../node_modules/ag-grid-community/dist/styles/ag-grid.css";
     @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css";
+
+    .image-overlay {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      background-color: #003d7c;
+      opacity: 0.5;
+    }
 
     .selectedHeader {
       color: #424242;
@@ -228,6 +306,13 @@
       margin: 5px;**/
     }
 
+    .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23f00' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+    }
+
+    .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23f00' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+    }
     .buttontext {
       color: #F9F9F9;
       font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
