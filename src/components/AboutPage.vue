@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable -->
   <div class="about_page">
     <b-card
       overlay

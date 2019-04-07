@@ -10,7 +10,7 @@
 
       <b-row>
         <b-col class="moduleInfo" cols="4"> <!-- implied cols="4" as it is even-->
-          <information v-bind:code="toUpperCase(code)" v-bind:description="description" v-bind:prereq="prereq" v-bind:lessons="lessons" v-bind:breakdown="breakdown" @refresh="refreshCode"></information>
+          <information v-bind:code="toUpperCase(code)" v-bind:description="description" v-bind:prereq="prereq" v-bind:recommended="recommended" v-bind:lessons="lessons" v-bind:breakdown="breakdown" @refresh="refreshCode"></information>
         </b-col>
 
         <b-col class="chartCol" cols="4"> <!-- implied cols="4" as it is even-->
@@ -69,6 +69,7 @@
             description: '',
             lessons: [],
             prereq: [],
+            recommended: [],
             updatedmajor: true,
             updatedyear: true,
             updatedreq: true,
@@ -92,6 +93,7 @@
         this.lessons = this.moduledata[this.capCode]['Lessons']
         this.breakdown = this.moduledata[this.capCode]['Breakdown']
         this.prereq = this.moduledata[this.capCode]['Prereq']
+        this.recommended = this.moduledata[this.capCode]['Recommended']
       },
       refreshCode(module) {
         this.code = this.$store.state.code

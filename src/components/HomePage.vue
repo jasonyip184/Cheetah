@@ -1,58 +1,45 @@
 <template>
+  <!-- eslint-disable -->
   <div class="home_page">
-    <!-- Current banner, comment out like this -->
-    <div v-html="carouselHTML"></div>
-    <!-- Alternative to current banner, need to:
-     1) change image sources to be exact same height for all 3
-     > img-height doesn't work, I don't know why
-     2) add a "darken" layer to the images before saving it (similar effect to current banner) to same/ another link
-     > so white text will stand out more
-     3) change content position and text style format of each banner "slide" in styles below
-     4) header tabs portion does not cover banner, make it darker (currently light grey) or make it cover banner?
-     This banner works when you leave and come back to the home page + can delete A LOT of current code
-     banner pauses when you hover over it, no-hover-pause is supposed to solve it but doesnt work, interval = "1000" = 1sec
-    -->
     <b-carousel
       id="category-banner"
       fade="true"
       indicators="true"
       no-hover-pause="true"
-      :interval="4000"
-      img-width="1024"
-      img-height="300px"
+      :interval="3000"
     >
 
       <b-carousel-slide
-        img-src="https://www.nicholaswan.me/images/cheetah/computing.png"
-        img-height="300px"
+        img-src="../assets/computing.png"
       >
         <div class = "shiftTop">
-          <div class="bannerHeader">Course</div>
           <div class="bannerDescription">View modules done by seniors in your course</div>
+          <p> ____________________________________ </p>
+          <div class="bannerHeader">Course</div>
           <br/>
           <button class="button"> <a href="#/course"><div class='exploreButtonText'>Explore More</div></a> </button>
         </div>
       </b-carousel-slide>
 
       <b-carousel-slide
-        img-src="https://www.nicholaswan.me/images/cheetah/arts.png"
-        img-height="300px"
+        img-src="../assets/arts.png"
       >
           <div class = "shiftTop">
-            <div class="bannerHeader">Module Type</div>
             <div class="bannerDescription">View modules by type (e.g. language, GE modules)</div>
+            <p> ____________________________________ </p>
+            <div class="bannerHeader">Module Type</div>
             <br/>
             <button class="button"> <a href="#/modtype"><div class='exploreButtonText'>Explore More</div></a> </button>
           </div>
       </b-carousel-slide>
 
       <b-carousel-slide
-        img-src="https://www.nicholaswan.me/images/cheetah/industry.png"
-        img-height="300px"
+        img-src="../assets/industry.png"
       >
         <div class = "shiftTop">
-          <div class="bannerHeader">Industry</div>
           <div class="bannerDescription">View modules taken by graduates in an industry</div>
+          <p> ____________________________________ </p>
+          <div class="bannerHeader">Industry</div>
           <br/>
           <button class="button"> <a href="#/industry"><div class='exploreButtonText'>Explore More</div></a> </button>
         </div>
@@ -61,7 +48,7 @@
     </b-carousel>
     <!-- End of alternative banner -->
 
-    <br/>
+    <br/><br/>
     <b-container fluid class="content">
       <b-row align-h="center">
 
@@ -193,70 +180,35 @@
         // For tour
         steps: [
           {
-            target: '.banner',
-            content: `Welcome to Modules+. Would you like a Tour?`
+            target: '.coursetext',
+            content: `Welcome to Modules+. Would you like a Tour?`,
+            params: {
+              placement: 'bottom'
+            }
           },
-          // {
-          //   target: '.coursetext',
-          //   content: 'Click to find out more about people in your course',
-          //   params: {
-          //     placement: 'bottom'
-          //   }
-          // },
-          // {
-          //   target: '.moduletext',
-          //   content: 'Click to discover modules by their types',
-          // },
-          // {
-          //   target: '.industrytext',
-          //   content: 'Click to find out which modules are relevant for an industry',
-          // },
+          {
+            target: '.coursetext',
+            content: 'Click to find out more about people in your course',
+            params: {
+              placement: 'bottom'
+            }
+          },
+          {
+            target: '.moduletext',
+            content: 'Click to discover modules by their types',
+          },
+          {
+            target: '.industrytext',
+            content: 'Click to find out which modules are relevant for an industry',
+          },
           {
             target: '#inputModuleCode',
             content: `Search for a Module code here`
           },
         ],
-        carouselHTML: `
-          <section class="banner full">
-          <article class="slide">
-            <img src="https://www.nicholaswan.me/images/cheetah/computing.png" alt="" />
-            <div class="inner">
-              <header>
-                <p><a href="#">View modules done by seniors in your course</a></p>
-                <h2>Course</h2>
-
-              </header>
-              <button class="button"> <a href="#/course">Explore More</a> </button>
-            </div>
-          </article>
-          <article class="slide2 slide" >
-            <img src="https://www.nicholaswan.me/images/cheetah/arts.png" alt="" />
-            <div class="inner">
-              <header>
-                <p>View modules by type (e.g language, GE modules)</p>
-                <h2>Module Type</h2>
-              </header>
-              <button class="button"> <a href="#/modtype">Explore More</a> </button>
-
-            </div>
-          </article>
-          <article class="slide">
-            <img src="https://www.nicholaswan.me/images/cheetah/industry.png"  alt="" />
-            <div class="inner">
-              <header>
-                <p>View modules taken by graduates in an industry</p>
-                <h2>Industry</h2>
-              </header>
-              <button class="button"> <a href="#/industry">Explore More</a> </button>
-
-            </div>
-          </article>
-        </section>
-      `
       }
     },
     mounted: function () {
-      loadPropCode()
       this.$tours['myTour'].start()
     },
     methods: {
@@ -317,7 +269,7 @@
 
 /**for content in banner, controls placement from BOTTOM**/
 .shiftTop {
-  margin-bottom: 200px;
+  margin-bottom: 8%;
 }
 
 /**change for content in banner**/
@@ -326,18 +278,21 @@
   font-weight: "bold"; /**330;**/
   font-size: 64px;
   color: #F9F9F9;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 /**change for content in banner**/
 .bannerDescription {
   font-family: Avenir;
-  font-weight: 300; /**330;**/
+  font-weight: 500; /**330;**/
   font-size: 20px;
-  color: #CDCCCC;
+  color: rgba(255,255,255,0.55);
 }
 
 .exploreButtonText {
   color: #F9F9F9;
+  font-family: Avenir;
 }
 
 .categoryHeader {
@@ -372,6 +327,7 @@ a:hover{
 button {
   background: #262626;
   height: 38px;
+  margin: 0px;
   /**
   border-radius: 2px;
   border: #fff; none

@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <router-view />
-    <VPageGuide v-model="showGuide"/>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
   <template>
     <div>
+      <br/>
         <b-row align-h="center">
         <div class="selectedHeader">
             <img v-b-popover.hover.topleft="tooltip" alt="Help" height="16" width="16" src="@/assets/help.png" />
@@ -136,24 +137,19 @@
                         '   <ul>'+
                         '       <li><h6> Keywords:         </h6></li>'+
                         '       <li><div class="button-2">'+
-                        '           <div class="eff-2"></div>'+
-                        '           <a href="#/">'+ keyword1 +'</a>'+
+                        '           <div class="eff-2"></div>'+keyword1+
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
-                        '           <div class="eff-2"></div>'+
-                        '           <a href="#/">'+ keyword2 +'</a>'+
+                        '           <div class="eff-2"></div>'+keyword2+
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
-                        '           <div class="eff-2"></div>'+
-                        '           <a href="#/">'+ keyword3 +'</a>'+
+                        '           <div class="eff-2"></div>'+keyword3+
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
-                        '           <div class="eff-2"></div>'+
-                        '           <a href="#/">'+ keyword4 +'</a>'+
+                        '           <div class="eff-2"></div>'+keyword4+
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
-                        '           <div class="eff-2"></div>'+
-                        '           <a href="#/">'+ keyword5 +'</a>'+
+                        '           <div class="eff-2"></div>'+keyword5+
                         '       </div></li>'+
                         '   </ul>'+
                     '</div>'
@@ -321,6 +317,7 @@
         position:relative;
         box-sizing:border-box;
         overflow:hidden;
+        padding-top:1%;
     }
     .button-2 a{
         font-family:Helvetica;

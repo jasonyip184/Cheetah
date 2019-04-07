@@ -11,7 +11,7 @@ export default {
     },
     data () {
         return {
-            code: this.code,
+            code1: this.code,
             moduledata: jsondata,
             renderAt: "chart-container",
             width: "100%",
@@ -42,7 +42,7 @@ export default {
     },
     methods: {
       fillData() {
-        this.datasource.data = this.moduledata[this.code]['Fulfilled Requirements'];
+        this.datasource.data = this.moduledata[this.code1]['Fulfilled Requirements'];
       },
       refreshData() {
         this.fillData();
@@ -53,6 +53,7 @@ export default {
 </script>
 
 <template>
+    <!-- eslint-disable -->
     <div id="app">
       <div id="chart-container">
         <b-button @click="refreshData" variant="light" size="sm" block v-show="!updatedreq"><div class="buttontext">Update Chart</div></b-button>

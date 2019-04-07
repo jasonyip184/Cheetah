@@ -12,6 +12,7 @@ export default {
     description: String,
     lessons: Array,
     prereq: Array,
+    recommended: Array,
   },
   components: {
     wordcloud
@@ -26,6 +27,7 @@ export default {
       description: this.description,
       lessons: this.lessons,
       prereq: this.prereq,
+      recommended: this.recommended,
       updatedbreakdown: true,
       updatedfeedback: true,
       moduledata: jsondata,
@@ -112,12 +114,18 @@ export default {
       </body>
 
       <h1 class="Title">Prerequisite</h1>
-
-
         <body class="paragraph" v-if="!prereq.length">None</body>
 
         <template v-else v-for="module in prereq" >
           <b-button @click="updateCode(module)" variant="light" block><div class="prereqbuttontext">{{module}}</div></b-button>
+        </template>
+
+
+      <h1 class="Title">Similar Modules</h1>
+        <body class="paragraph" v-if="!recommended.length">None</body>
+
+        <template v-else v-for="module in recommended" >
+          <b-button variant="light" block><div class="prereqbuttontext">{{module}}</div></b-button>
         </template>
 
 

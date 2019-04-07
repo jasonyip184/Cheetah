@@ -60,6 +60,7 @@ export default {
 </script>
 
 <template>
+    <!-- eslint-disable -->
     <div id="app">
       <div id="chart-container">
         <b-button @click="refreshData" variant="light" size="sm" block v-show="!updatedind"><div class="buttontext">Update Chart</div></b-button>

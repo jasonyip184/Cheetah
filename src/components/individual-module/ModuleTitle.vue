@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable -->
   <div class="main">
     <b-container fluid class="content">
       <b-row align-h="center">
