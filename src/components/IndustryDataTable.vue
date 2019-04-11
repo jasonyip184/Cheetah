@@ -18,6 +18,53 @@
         </router-link>
       </b-row>
 
+      <br/><br/><br/>
+
+      <div v-show="!isSelectionMade">
+        <b-container fluid class="content">
+          <h3> Recommended Jobs live from Talent Connect </h3>
+          <br/>
+          <b-row align-h="center">
+            <b-col cols="4">
+              <b-card no-body>
+                <b-row no-gutters>
+                    <b-card-body>
+                      <a href="https://nus-csm.symplicity.com/students/index.php?s=jobs&amp;ss=jobs&amp;mode=form&amp;id=06ddbfb5be5762c0d45845e343adcdaa">
+                        <div class="cardTitle1">Engineer (Construction Materials Testing)</div>
+                      </a>
+                    </b-card-body>
+                </b-row>
+              </b-card>
+            </b-col>
+
+            <b-col cols="4">
+              <b-card no-body>
+                <b-row no-gutters>
+                    <b-card-body>
+                      <a href="https://nus-csm.symplicity.com/students/index.php?s=jobs&amp;ss=jobs&amp;mode=form&amp;id=06ddbfb5be5762c0d45845e343adcdaa">
+                        <div class="cardTitle1">Internship/Part-time Job in Field Robotics for Construction</div>
+                      </a>
+                    </b-card-body>
+                </b-row>
+              </b-card>
+            </b-col>
+
+            <b-col cols="4">
+              <b-card no-body>
+                <b-row no-gutters>
+                    <b-card-body>
+                      <a href="https://nus-csm.symplicity.com/students/index.php?s=jobs&amp;ss=jobs&amp;mode=form&amp;id=8ef044808932b2a2abf216b9b61137c7">
+                        <div class="cardTitle1">ERP Implementation Internship (In Real Estate&amp;Construction) </div>
+                      </a>
+                    </b-card-body>
+                </b-row>
+              </b-card>
+            </b-col>
+
+          </b-row>
+        </b-container>
+      </div>
+
       <b-row align-h="center" v-show="isAdvertising">
         <b-col cols="3">
           <b-carousel
@@ -72,21 +119,25 @@
         </b-col>
       </b-row>
 
-      <b-row align-h="center" v-show="isConstruction">
-        <b-col cols="3">
-          <b-carousel
-              id="construction-industry-carousel"
-              fade
-              controls
-              indicators
-              :interval="3000"
-          >
-              <a href="http://www.chcgroup.com.sg/index.php/projects-manager/" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/construction/n4.jpg" v-b-popover.hover="'CHC Construction Pte. Ltd., established in July 2005 by Laurence Liau, specialises in civil engineering work and has completed various projects with most government agencies including the Land Transport Authority, Housing of Development Board, Ministry of Education, Public Utilities Board, Urban Redevelopment Authority etc.'" title="CHC Construction Pte. Ltd." placement="right"></b-carousel-slide></a>
-              <a href="http://gbco.com.sg/" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/construction/n3.jpg" v-b-popover.hover="'Grandeur Builders & Co talented team of interior designer and project managers can help you. Our service are perfect for both small and large businesses. Whether you are looking to upgrade your business for better efficiency and safety, or is looking to infuse your commercial space with a more innovative atmosphere.'" title="Grandeur Builders" placement="right"></b-carousel-slide></a>
-              <a href="https://www.soilbuildconstruction.com/Career" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/construction/n5.jpg" v-b-popover.hover="'Soilbuild Construction Group Ltd. (the “Group” or “Soilbuild”) is a leading builder with a long and successful track record of constructing a sterling award-winning portfolio of residential and business space properties. Since its inception in 1976, Soilbuild charts over 40 years of success in offering a full spectrum of real estate services which includes Civil Engineering, Design and Build, Construction, Turnkey Construction, Project Management Consultancy, Procurement and Mechanical & Electrical Installation. '" title="Soilbuild Construction Group Ltd." placement="right"></b-carousel-slide></a>
-          </b-carousel>
-        </b-col>
-      </b-row>
+      <div v-show="isConstruction">
+        <br/><br/><br/>
+        <h3> Careers Pages from Companies in selected industry </h3>
+        <b-row align-h="center">
+          <b-col cols="3">
+            <b-carousel
+                id="construction-industry-carousel"
+                fade
+                controls
+                indicators
+                :interval="3000"
+            >
+                <a href="http://www.chcgroup.com.sg/index.php/projects-manager/" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/construction/n4.jpg" v-b-popover.hover="'CHC Construction Pte. Ltd., established in July 2005 by Laurence Liau, specialises in civil engineering work and has completed various projects with most government agencies including the Land Transport Authority, Housing of Development Board, Ministry of Education, Public Utilities Board, Urban Redevelopment Authority etc.'" title="CHC Construction Pte. Ltd." placement="right"></b-carousel-slide></a>
+                <a href="http://gbco.com.sg/" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/construction/n3.jpg" v-b-popover.hover="'Grandeur Builders & Co talented team of interior designer and project managers can help you. Our service are perfect for both small and large businesses. Whether you are looking to upgrade your business for better efficiency and safety, or is looking to infuse your commercial space with a more innovative atmosphere.'" title="Grandeur Builders" placement="right"></b-carousel-slide></a>
+                <a href="https://www.soilbuildconstruction.com/Career" target="_blank"><b-carousel-slide img-src="../assets/industry_slider/construction/n5.jpg" v-b-popover.hover="'Soilbuild Construction Group Ltd. (the “Group” or “Soilbuild”) is a leading builder with a long and successful track record of constructing a sterling award-winning portfolio of residential and business space properties. Since its inception in 1976, Soilbuild charts over 40 years of success in offering a full spectrum of real estate services which includes Civil Engineering, Design and Build, Construction, Turnkey Construction, Project Management Consultancy, Procurement and Mechanical & Electrical Installation. '" title="Soilbuild Construction Group Ltd." placement="right"></b-carousel-slide></a>
+            </b-carousel>
+          </b-col>
+        </b-row>
+      </div>
 
       <!--
       <b-row align-h="center">
