@@ -2,6 +2,8 @@
 
 <script>
 import jsondata from '@/data/module_data.json';
+import wordcloud from 'vue-wordcloud'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Overview',
@@ -9,15 +11,25 @@ export default {
     code: String,
     description: String,
     lessons: Array,
+    prereq: Array,
+    recommended: Array,
+  },
+  components: {
+    wordcloud
   },
   mounted() {
-    this.fillDescriptionData();
+    this.fillBreakdownData();
+    this.fillFeedbackData();
   },
   data () {
     return {
       code: this.code,
       description: this.description,
       lessons: this.lessons,
+      prereq: this.prereq,
+      recommended: this.recommended,
+      updatedbreakdown: true,
+      updatedfeedback: true,
       moduledata: jsondata,
       renderAt: "chart-container",
       width: "100%",
@@ -54,16 +66,38 @@ export default {
           },
           "data": null,
       },
+      wordcloudcolors: ['#DC7309', '#DA8A3A', '#D89858', '#DCAF82', '#FCC894'], //blues ['#1f77b4', '#629fc9', '#94bedb', '#c9e0ef'],
+      feedback: [],
     }
   },
   methods:{
       newTab: function () {
           window.open("https://nusmods.com/modules/" + this.code);
       },
-      fillDescriptionData() {
+      fillBreakdownData() {
         this.datasource.data = this.moduledata[this.code]['Breakdown']
+        this.updatedbreakdown = true;
       },
-    }
+      fillFeedbackData() {
+        this.feedback = this.moduledata[this.code]['Feedback']
+        this.updatedfeedback = true;
+      },
+      ...mapMutations([
+        'UPDATE_MODULE_CODE'
+      ]),
+      updateCode(module) {
+        this.UPDATE_MODULE_CODE(module);
+        this.$emit('refresh', module);
+        this.updatedbreakdown = false;
+        this.updatedfeedback = false;
+        //this.fillBreakdownData();
+        //this.fillFeedbackData();
+        //eventBus.$emit('mod-refreshed')
+        //this.$root.$emit('refreshing', module);
+        //this.$root.$emit('refresh')
+     },
+  },
+
 }
 </script>
 
@@ -78,6 +112,23 @@ export default {
           {{description}}
         </p>
       </body>
+
+      <h1 class="Title">Prerequisite</h1>
+        <body class="paragraph" v-if="!prereq.length">None</body>
+
+        <template v-else v-for="module in prereq" >
+          <b-button @click="updateCode(module)" variant="light" block><div class="prereqbuttontext">{{module}}</div></b-button>
+        </template>
+
+
+      <h1 class="Title">Similar Modules</h1>
+        <body class="paragraph" v-if="!recommended.length">None</body>
+
+        <template v-else v-for="module in recommended" >
+          <b-button variant="light" block><div class="prereqbuttontext">{{module}}</div></b-button>
+        </template>
+
+
 
       <h1 class="Title">Lessons</h1>
 
@@ -162,24 +213,38 @@ export default {
 
         </b-row>
       </b-container>
-      <b-row align-h="end" class="button">
-        <!--<b-button size="sm" variant="outline-primary" @click="newTab"><div class="buttontext">Add to timetable in NUSMods</div></b-button>-->
-        <button @click="newTab"><div class="buttontext">Add to timetable in NUSMods</div></button>
+      <b-row align-h="end">
+        <b-button size="sm" variant="success" @click="newTab"><div class="nusmodbuttontext">Add to timetable in NUSMods</div></b-button>
+        <!--<div class="shiftright"><button @click="newTab"><div class="nusmodbuttontext">Add to timetable in NUSMods</div></button></div>-->
       </b-row>
 
 
-
       <h1 class="Title">Assessment Breakdown</h1>
-      <div class="chartContainer">
+      <b-button @click="fillBreakdownData" variant="light" size="sm" block v-show="!updatedbreakdown"><div class="updatebuttontext">Update Data</div></b-button>
+      <div class="breakdownContainer">
         <fusioncharts
-          :type="type"
-          :width="width"
-          :height="height"
-          :dataformat="dataformat"
-          :datasource="datasource"
-          >
+            :type="type"
+            :width="width"
+            :height="height"
+            :dataformat="dataformat"
+            :datasource="datasource"
+            >
         </fusioncharts>
       </div>
+
+
+      <h1 class="Title">Module Feedback</h1>
+      <b-button @click="fillFeedbackData" variant="light" size="sm" block v-show="!updatedfeedback"><div class="updatebuttontext">Update Data</div></b-button>
+        <!-- https://www.npmjs.com/package/vue-wordcloud -->
+      <wordcloud
+        :data="feedback"
+        nameKey="name"
+        valueKey="value"
+        font="Roboto"
+        :color="wordcloudcolors"
+        :showTooltip="false">
+      </wordcloud>
+
 
     </div>
   </div>
@@ -223,6 +288,23 @@ export default {
     margin: 10px auto 10px;
 }
 
+
+.searchButton {
+  background: #E1E1E1;
+  height: 30px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: #FF4040;
+  border-radius: 2px;
+  text-align: center;
+  /**
+  color: #fff;
+  text-emphasis-color: #E27979;
+  padding: 10px;
+  margin: 5px;**/
+}
+
 .lessons-table {
   margin-left: -50px;
 }
@@ -252,6 +334,7 @@ export default {
   font-size: 13px;
 }
 
+/**
 button {
   background: #FFFFFF;
   height: 38px;
@@ -261,14 +344,44 @@ button {
   padding-right: 0px;
   margin: auto;
 }
+**/
 
-.buttontext {
-  color: #007BFF; /**#F9F9F9;**/
+.prereqbuttontext {
+  color: #007BFF; /**#007BFF;**/
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 400; /**330;**/
-  font-size: 12px;
+  font-size: 16px;
   margin: auto;
   padding-left: 3%;
   padding-right: 3%;
 }
+
+.shiftright {
+  margin-left: 20px
+}
+
+.breakdownContainer {
+  margin-top: 3px
+}
+
+.nusmodbuttontext {
+  color: #FAFAFA; /**#007BFF;**/
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 400; /**330;**/
+  font-size: 14px;
+  /**margin: auto;
+  padding-left: 3%;
+  padding-right: 3%;**/
+}
+
+.updatebuttontext {
+  color: #FF5138; /**#007BFF;**/
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 500; /**330;**/
+  font-size: 16px;
+  margin: auto;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
 </style>

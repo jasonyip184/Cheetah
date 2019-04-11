@@ -15,7 +15,7 @@
       </b-card-text>
     </b-card>
     <b-container fluid class="content">
-      </br></br>
+      </br>
       <IndustryDataTable/>
       </br></br>
     </b-container>

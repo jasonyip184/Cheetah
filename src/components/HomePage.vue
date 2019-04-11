@@ -1,7 +1,53 @@
 <template>
+  <!-- eslint-disable -->
   <div class="home_page">
-    <div v-html="carouselHTML"></div>
-    <!-- Use this whole chunk for the cards and module input field -->
+    <b-carousel
+      id="category-banner"
+      fade="true"
+      indicators="true"
+      no-hover-pause="true"
+      :interval="3000"
+    >
+
+      <b-carousel-slide
+        img-src="../assets/computing.png"
+      >
+        <div class = "shiftTop">
+          <div class="bannerDescription">View modules done by seniors in your course</div>
+          <p> ____________________________________ </p>
+          <div class="bannerHeader">Course</div>
+          <br/>
+          <button class="button"> <a href="#/course"><div class='exploreButtonText'>Explore More</div></a> </button>
+        </div>
+      </b-carousel-slide>
+
+      <b-carousel-slide
+        img-src="../assets/arts.png"
+      >
+          <div class = "shiftTop">
+            <div class="bannerDescription">View modules by type (e.g. language, GE modules)</div>
+            <p> ____________________________________ </p>
+            <div class="bannerHeader">Module Type</div>
+            <br/>
+            <button class="button"> <a href="#/modtype"><div class='exploreButtonText'>Explore More</div></a> </button>
+          </div>
+      </b-carousel-slide>
+
+      <b-carousel-slide
+        img-src="../assets/industry.png"
+      >
+        <div class = "shiftTop">
+          <div class="bannerDescription">View modules taken by graduates in an industry</div>
+          <p> ____________________________________ </p>
+          <div class="bannerHeader">Industry</div>
+          <br/>
+          <button class="button"> <a href="#/industry"><div class='exploreButtonText'>Explore More</div></a> </button>
+        </div>
+      </b-carousel-slide>
+
+    </b-carousel>
+    <!-- End of alternative banner -->
+
     <br/><br/>
     <b-container fluid class="content">
       <b-row align-h="center">
@@ -89,7 +135,7 @@
               placeholder="Enter Module Code (e.g. ACC1002)"
             />
             <b-input-group-append>
-              <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
+              <router-link :to="{ name: 'module' }" :event="isInvalidInputL">
                 <!-- <b-button :disabled="isInvalidInput" variant="dark" @click="updateCode">Search</b-button> -->
                 <button :disabled="isInvalidInput" @click="updateCode"><div class="buttontext">Search</div></button>
               </router-link>
@@ -120,86 +166,60 @@
 
 <script>
   import Footer from "@/components/Footer.vue";
-  import jsondata from '@/data/module_data.json';
+  import module_data from '@/data/module_data.json';
   import { mapMutations } from 'vuex'  // Add mapMutations
 
   export default {
 
     data() {
       return {
-        modulelist: jsondata['modulelist'],
+        modulelist: module_data['modulelist'],
         isInvalidInput: true,
         code: '',
 
         // For tour
         steps: [
           {
-            target: '.banner',
-            content: `Welcome to Modules+. Would you like a Tour?`
+            target: '.coursetext',
+            content: `Welcome to Modules+. Would you like a Tour?`,
+            params: {
+              placement: 'bottom'
+            }
           },
-          // {
-          //   target: '.coursetext',
-          //   content: 'Click to find out more about people in your course',
-          //   params: {
-          //     placement: 'bottom'
-          //   }
-          // },
-          // {
-          //   target: '.moduletext',
-          //   content: 'Click to discover modules by their types',
-          // },
-          // {
-          //   target: '.industrytext',
-          //   content: 'Click to find out which modules are relevant for an industry',
-          // },
+          {
+            target: '.coursetext',
+            content: 'Click to find out more about people in your course',
+            params: {
+              placement: 'bottom'
+            }
+          },
+          {
+            target: '.moduletext',
+            content: 'Click to discover modules by their types',
+          },
+          {
+            target: '.industrytext',
+            content: 'Click to find out which modules are relevant for an industry',
+          },
           {
             target: '#inputModuleCode',
             content: `Search for a Module code here`
           },
         ],
-        carouselHTML: `
-          <section class="banner full">
-          <article class="slide">
-            <img src="https://www.nicholaswan.me/images/cheetah/computing.png" alt="" />
-            <div class="inner">
-              <header>
-                <p><a href="#">View modules done by seniors in your course</a></p>
-                <h2>Course</h2>
-
-              </header>
-              <button class="button"> <a href="#/course">Explore More</a> </button>
-            </div>
-          </article>
-          <article class="slide2 slide" >
-            <img src="https://www.nicholaswan.me/images/cheetah/arts.png" alt="" />
-            <div class="inner">
-              <header>
-                <p>View modules by type (e.g language, GE modules)</p>
-                <h2>Module Type</h2>
-              </header>
-              <button class="button"> <a href="#/modtype">Explore More</a> </button>
-
-            </div>
-          </article>
-          <article class="slide">
-            <img src="https://www.nicholaswan.me/images/cheetah/industry.png"  alt="" />
-            <div class="inner">
-              <header>
-                <p>View modules taken by graduates in an industry</p>
-                <h2>Industry</h2>
-              </header>
-              <button class="button"> <a href="#/industry">Explore More</a> </button>
-
-            </div>
-          </article>
-        </section>
-      `
       }
     },
     mounted: function () {
       this.$tours['myTour'].start()
     },
     methods: {
+      loadPropCode(){
+        if (this.code == null) {
+          return ''
+        }
+        else {
+          this.code == this.code
+        }
+      },
       toUpperCase(text) {
         return text.toUpperCase();
       },
@@ -228,8 +248,7 @@
           }
         }
       },
-      isInvalidInputR(){
-        /**return ''**/
+      isInvalidInputL(){
         if (this.isInvalidInput) {
           return ''
         }
@@ -247,6 +266,34 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+/**for content in banner, controls placement from BOTTOM**/
+.shiftTop {
+  margin-bottom: 8%;
+}
+
+/**change for content in banner**/
+.bannerHeader {
+  font-family: Arial;
+  font-weight: "bold"; /**330;**/
+  font-size: 64px;
+  color: #F9F9F9;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+/**change for content in banner**/
+.bannerDescription {
+  font-family: Avenir;
+  font-weight: 500; /**330;**/
+  font-size: 20px;
+  color: rgba(255,255,255,0.55);
+}
+
+.exploreButtonText {
+  color: #F9F9F9;
+  font-family: Avenir;
+}
 
 .categoryHeader {
   color: #003d7c;
@@ -280,6 +327,7 @@ a:hover{
 button {
   background: #262626;
   height: 38px;
+  margin: 0px;
   /**
   border-radius: 2px;
   border: #fff; none

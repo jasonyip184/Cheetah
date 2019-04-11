@@ -16,7 +16,7 @@
     </b-card>
     <b-container fluid class="content">
 
-      </br></br>
+      </br>
       <ModuleTypeDataTable/>
       </br></br>
     </b-container>

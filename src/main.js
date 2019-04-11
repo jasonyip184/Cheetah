@@ -25,6 +25,7 @@ import FormInput from 'bootstrap-vue/es/components/form-input'
 import FormSelect from 'bootstrap-vue/es/components/form-select';
 import Popover from 'bootstrap-vue/es/directives/popover';
 
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBook, faSchool, faIndustry, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

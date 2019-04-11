@@ -7,10 +7,11 @@ export default {
     name: 'req-chart',
     props: {
       code: String,
+      updatedreq: Boolean,
     },
     data () {
         return {
-            code: this.code,
+            code1: this.code,
             moduledata: jsondata,
             renderAt: "chart-container",
             width: "100%",
@@ -41,17 +42,21 @@ export default {
     },
     methods: {
       fillData() {
-        // this is where we will query the imported (json) data with the module code prop for the appropriate data
-        //Replace below line with query result using module code prop, FIT THIS FORMAT (list of jsons)
-        this.datasource.data = this.moduledata[this.code]['Fulfilled Requirements'];
+        this.datasource.data = this.moduledata[this.code1]['Fulfilled Requirements'];
       },
+      refreshData() {
+        this.fillData();
+        this.$emit('update', true);
+      }
     }
 }
 </script>
 
 <template>
+    <!-- eslint-disable -->
     <div id="app">
       <div id="chart-container">
+        <b-button @click="refreshData" variant="light" size="sm" block v-show="!updatedreq"><div class="buttontext">Update Chart</div></b-button>
         <fusioncharts
           :type="type"
           :width="width"
@@ -73,6 +78,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.buttontext {
+  color: #FF5138; /**#007BFF;**/
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 500; /**330;**/
+  font-size: 16px;
+  margin: auto;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
 h1, h2 {

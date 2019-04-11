@@ -10,20 +10,20 @@
 
       <b-row>
         <b-col class="moduleInfo" cols="4"> <!-- implied cols="4" as it is even-->
-          <information v-bind:code="toUpperCase(code)" v-bind:description="description" v-bind:lessons="lessons" v-bind:breakdown="breakdown"></information>
+          <information v-bind:code="toUpperCase(code)" v-bind:description="description" v-bind:prereq="prereq" v-bind:recommended="recommended" v-bind:lessons="lessons" v-bind:breakdown="breakdown" @refresh="refreshCode"></information>
         </b-col>
 
         <b-col class="chartCol" cols="4"> <!-- implied cols="4" as it is even-->
-          <major-chart v-bind:code="toUpperCase(code)"></major-chart>
+          <major-chart v-bind:code="toUpperCase(code)" v-bind:updatedmajor="updatedmajor" @update="updateMajor"></major-chart>
           <div class="disclaimer">Based on the most recent semester that the module was offered.</div>
-          <requirements-chart v-bind:code="toUpperCase(code)"></requirements-chart>
+          <requirements-chart v-bind:code="toUpperCase(code)" v-bind:updatedreq="updatedreq" @update="updateReq"></requirements-chart>
           <div class="disclaimer">Based on the most recent semester that the module was offered.</div>
         </b-col>
 
         <b-col class="chartCol" cols="4"> <!-- implied cols="4" as it is even-->
-          <year-chart v-bind:code="toUpperCase(code)"></year-chart>
+          <year-chart v-bind:code="toUpperCase(code)" v-bind:updatedyear="updatedyear" @update="updateYear"></year-chart>
           <div class="disclaimer">Based on the most recent semester that the module was offered.</div>
-          <industry-chart v-bind:code="toUpperCase(code)"></industry-chart>
+          <industry-chart v-bind:code="toUpperCase(code)" v-bind:updatedind="updatedind" @update="updateInd"></industry-chart>
         </b-col>
       </b-row>
     </b-container>
@@ -48,6 +48,7 @@
   import { mapState } from 'vuex';
 
 
+
   export default {
     name: "batch",
     components: {
@@ -67,6 +68,12 @@
             name: '',
             description: '',
             lessons: [],
+            prereq: [],
+            recommended: [],
+            updatedmajor: true,
+            updatedyear: true,
+            updatedreq: true,
+            updatedind: true,
         }
     },
     mounted() {
@@ -85,8 +92,35 @@
         this.description = this.moduledata[this.capCode]['Description']
         this.lessons = this.moduledata[this.capCode]['Lessons']
         this.breakdown = this.moduledata[this.capCode]['Breakdown']
-      }
-    }
+        this.prereq = this.moduledata[this.capCode]['Prereq']
+        this.recommended = this.moduledata[this.capCode]['Recommended']
+      },
+      refreshCode(module) {
+        this.code = this.$store.state.code
+        this.ensureCapitalCode()
+        this.getModuleData()
+        this.updatedmajor = false
+        this.updatedyear = false
+        this.updatedreq = false
+        this.updatedind = false
+        //this.$router.go({ path: '/module', code: 'ACC1002' })
+        //this.$router.go(0)
+        //this.$router.go(this.$router.currentRoute)
+        //this.$forceUpdate();
+      },
+      updateMajor(status) {
+        this.updatedmajor = status
+      },
+      updateYear(status) {
+        this.updatedyear = status
+      },
+      updateReq(status) {
+        this.updatedreq = status
+      },
+      updateInd(status) {
+        this.updatedind = status
+      },
+    },
   };
 </script>
 

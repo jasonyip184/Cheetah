@@ -1,5 +1,6 @@
   <template>
     <div>
+      <br/>
         <b-row align-h="center">
         <div class="selectedHeader">
             <img v-b-popover.hover.topleft="tooltip" alt="Help" height="16" width="16" src="@/assets/help.png" />
@@ -11,9 +12,9 @@
           <div class="selectedModule">{{selectedModuleText}}</div>
         </b-row>
 
-        <b-row align-h="center" v-show="!isInvalidInput">
-          <router-link :to="{ name: 'module' }" :event="isInvalidInputR">
-            <b-button @click="updateCode" variant="success" :disabled="isInvalidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
+        <b-row align-h="center" v-show="!isSelectionMade">
+          <router-link :to="{ name: 'module' }" :event="isInvalidInputL">
+            <b-button @click="updateCode" variant="success" :disabled="!isValidInput" class="searchButton"><div class="buttontext">Find Out More</div></b-button>
           </router-link>
         </b-row>
 
@@ -66,12 +67,14 @@
 <script>
     import {AgGridVue} from "ag-grid-vue";
     import course_data from '../data/course_data.json';
+    import module_data from '@/data/module_data.json';
     import { mapMutations } from 'vuex'
 
     export default {
         name: 'App',
         data() {
             return {
+                modulelist: module_data['modulelist'],
                 selectedRowSize: "10", //default value for row/page size using my new filter
                 selectedModuleCode: 'None',
                 selectedModuleText: 'None',
@@ -134,24 +137,19 @@
                         '   <ul>'+
                         '       <li><h6> Keywords:         </h6></li>'+
                         '       <li><div class="button-2">'+
-                        '           <div class="eff-2"></div>'+
-                        '           <a href="#/">'+ keyword1 +'</a>'+
+                        '           <div class="eff-2"></div>'+keyword1+
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
-                        '           <div class="eff-2"></div>'+
-                        '           <a href="#/">'+ keyword2 +'</a>'+
+                        '           <div class="eff-2"></div>'+keyword2+
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
-                        '           <div class="eff-2"></div>'+
-                        '           <a href="#/">'+ keyword3 +'</a>'+
+                        '           <div class="eff-2"></div>'+keyword3+
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
-                        '           <div class="eff-2"></div>'+
-                        '           <a href="#/">'+ keyword4 +'</a>'+
+                        '           <div class="eff-2"></div>'+keyword4+
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
-                        '           <div class="eff-2"></div>'+
-                        '           <a href="#/">'+ keyword5 +'</a>'+
+                        '           <div class="eff-2"></div>'+keyword5+
                         '       </div></li>'+
                         '   </ul>'+
                     '</div>'
@@ -195,15 +193,18 @@
             }
         },
         computed: {
-          isInvalidInput(){
+          isSelectionMade(){
             return (this.selectedModuleCode == 'None')
           },
-          isInvalidInputR(){
-            if (this.selectedModuleCode == 'None') {
-              return ''
+          isValidInput(){
+            return (this.modulelist.includes(this.selectedModuleCode))
+          },
+          isInvalidInputL(){
+            if (this.modulelist.includes(this.selectedModuleCode)) {
+              return 'click'
             }
             else {
-              return 'click'
+              return ''
             }
           },
         }
@@ -316,6 +317,7 @@
         position:relative;
         box-sizing:border-box;
         overflow:hidden;
+        padding-top:1%;
     }
     .button-2 a{
         font-family:Helvetica;
