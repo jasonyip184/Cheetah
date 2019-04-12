@@ -90,11 +90,6 @@ export default {
         this.$emit('refresh', module);
         this.updatedbreakdown = false;
         this.updatedfeedback = false;
-        //this.fillBreakdownData();
-        //this.fillFeedbackData();
-        //eventBus.$emit('mod-refreshed')
-        //this.$root.$emit('refreshing', module);
-        //this.$root.$emit('refresh')
      },
   },
 
@@ -107,11 +102,11 @@ export default {
     <div class="left">
 
       <h1 class="Title">Overview</h1>
-      <body class="paragraph">
-        <p class="text-justify">
-          {{description}}
-        </p>
-      </body>
+        <body class="paragraph">
+          <p class="text-justify">
+            {{description}}
+          </p>
+        </body>
 
       <h1 class="Title">Prerequisite</h1>
         <body class="paragraph" v-if="!prereq.length">None</body>
@@ -121,102 +116,91 @@ export default {
         </template>
 
 
-      <h1 class="Title">Similar Modules</h1>
-        <body class="paragraph" v-if="!recommended.length">None</body>
-
-        <template v-else v-for="module in recommended" >
-          <b-button variant="light" block><div class="prereqbuttontext">{{module}}</div></b-button>
-        </template>
-
-
-
       <h1 class="Title">Lessons</h1>
+        <b-container fluid class="lessons-table">
+          <b-row align-h="left">
 
-      <b-container fluid class="lessons-table">
-        <b-row align-h="left">
+            <b-col cols="6">
 
-          <b-col cols="6">
+              <b-row align-h="left">
+              <body class="lessonCat">Lecture: </br></body>
+              </b-row>
+              <b-row align-h="left">
+                <div v-if="lessons[0] == 0">
+                  <body class="lessonValue">-</body>
+                </div>
+                <div v-else>
+                  <body class="lessonValue">{{lessons[0]}} * {{lessons[1]}} hr session(s) / {{lessons[2]}} week(s)</body>
+                </div>
+              </b-row>
 
-            <b-row align-h="left">
-            <body class="lessonCat">Lecture: </br></body>
-            </b-row>
-            <b-row align-h="left">
-              <div v-if="lessons[0] == 0">
-                <body class="lessonValue">-</body>
-              </div>
-              <div v-else>
-                <body class="lessonValue">{{lessons[0]}} * {{lessons[1]}} hr session(s) / {{lessons[2]}} week(s)</body>
-              </div>
-            </b-row>
-
-            <b-row align-h="left">
-            <body class="lessonCat">Sectional:</body>
-            </b-row>
-            <b-row align-h="left">
-              <div v-if="lessons[3] == 0">
-                <body class="lessonValue">-</body>
-              </div>
-              <div v-else>
-                <body class="lessonValue">{{lessons[3]}} * {{lessons[4]}} hr session(s) / {{lessons[5]}} week(s)</body>
-              </div>
-            </b-row>
+              <b-row align-h="left">
+              <body class="lessonCat">Sectional:</body>
+              </b-row>
+              <b-row align-h="left">
+                <div v-if="lessons[3] == 0">
+                  <body class="lessonValue">-</body>
+                </div>
+                <div v-else>
+                  <body class="lessonValue">{{lessons[3]}} * {{lessons[4]}} hr session(s) / {{lessons[5]}} week(s)</body>
+                </div>
+              </b-row>
 
 
-            <b-row align-h="left">
-            <body class="lessonCat">Recitation:</body>
-            </b-row>
-            <b-row align-h="left">
-              <div v-if="lessons[6] == 0">
-                <body class="lessonValue">-</body>
-              </div>
-              <div v-else>
-                <body class="lessonValue">{{lessons[6]}} * {{lessons[7]}} hr session(s) / {{lessons[8]}} week(s)</body>
-              </div>
-            </b-row>
+              <b-row align-h="left">
+              <body class="lessonCat">Recitation:</body>
+              </b-row>
+              <b-row align-h="left">
+                <div v-if="lessons[6] == 0">
+                  <body class="lessonValue">-</body>
+                </div>
+                <div v-else>
+                  <body class="lessonValue">{{lessons[6]}} * {{lessons[7]}} hr session(s) / {{lessons[8]}} week(s)</body>
+                </div>
+              </b-row>
 
-          </b-col>
+            </b-col>
 
-          <b-col cols="6">
+            <b-col cols="6">
 
-            <b-row align-h="left">
-            <body class="lessonCat">Tutorial:</body>
-            </b-row>
-            <b-row align-h="left">
-              <div v-if="lessons[9] == 0">
-                <body class="lessonValue">-</body>
-              </div>
-              <div v-else>
-                <body class="lessonValue">{{lessons[9]}} * {{lessons[10]}} hr session(s) / {{lessons[11]}} week(s)</body>
-              </div>
-            </b-row>
+              <b-row align-h="left">
+              <body class="lessonCat">Tutorial:</body>
+              </b-row>
+              <b-row align-h="left">
+                <div v-if="lessons[9] == 0">
+                  <body class="lessonValue">-</body>
+                </div>
+                <div v-else>
+                  <body class="lessonValue">{{lessons[9]}} * {{lessons[10]}} hr session(s) / {{lessons[11]}} week(s)</body>
+                </div>
+              </b-row>
 
-            <b-row align-h="left">
-            <body class="lessonCat">Lab:</body>
-            </b-row>
-            <b-row align-h="left">
-              <div v-if="lessons[12] == 0">
-                <body class="lessonValue">-</body>
-              </div>
-              <div v-else>
-                <body class="lessonValue">{{lessons[12]}} * {{lessons[13]}} hr session(s) / {{lessons[14]}} week(s)</body>
-              </div>
-            </b-row>
+              <b-row align-h="left">
+              <body class="lessonCat">Lab:</body>
+              </b-row>
+              <b-row align-h="left">
+                <div v-if="lessons[12] == 0">
+                  <body class="lessonValue">-</body>
+                </div>
+                <div v-else>
+                  <body class="lessonValue">{{lessons[12]}} * {{lessons[13]}} hr session(s) / {{lessons[14]}} week(s)</body>
+                </div>
+              </b-row>
 
-            <b-row align-h="left">
-            <body class="lessonCatEmpty">_</body>
-            </b-row>
-            <b-row align-h="left">
-            <body class="lessonValueEmpty">_</body>
-            </b-row>
+              <b-row align-h="left">
+              <body class="lessonCatEmpty">_</body>
+              </b-row>
+              <b-row align-h="left">
+              <body class="lessonValueEmpty">_</body>
+              </b-row>
 
-          </b-col>
+            </b-col>
 
+          </b-row>
+        </b-container>
+        <b-row align-h="end">
+          <b-button size="sm" variant="success" @click="newTab"><div class="nusmodbuttontext">Add to timetable in NUSMods</div></b-button>
         </b-row>
-      </b-container>
-      <b-row align-h="end">
-        <b-button size="sm" variant="success" @click="newTab"><div class="nusmodbuttontext">Add to timetable in NUSMods</div></b-button>
-        <!--<div class="shiftright"><button @click="newTab"><div class="nusmodbuttontext">Add to timetable in NUSMods</div></button></div>-->
-      </b-row>
 
 
       <h1 class="Title">Assessment Breakdown</h1>
@@ -234,16 +218,24 @@ export default {
 
 
       <h1 class="Title">Module Feedback</h1>
-      <b-button @click="fillFeedbackData" variant="light" size="sm" block v-show="!updatedfeedback"><div class="updatebuttontext">Update Data</div></b-button>
-        <!-- https://www.npmjs.com/package/vue-wordcloud -->
-      <wordcloud
-        :data="feedback"
-        nameKey="name"
-        valueKey="value"
-        font="Roboto"
-        :color="wordcloudcolors"
-        :showTooltip="false">
-      </wordcloud>
+        <b-button @click="fillFeedbackData" variant="light" size="sm" block v-show="!updatedfeedback"><div class="updatebuttontext">Update Data</div></b-button>
+        <wordcloud
+          :data="feedback"
+          nameKey="name"
+          valueKey="value"
+          font="Roboto"
+          :color="wordcloudcolors"
+          :showTooltip="false">
+        </wordcloud>
+
+        <div class="shiftUp"><h1 class="Title">Similar Modules</h1></div>
+          <body class="paragraph" v-if="!recommended.length">None</body>
+          <template v-else v-for="module in recommended" >
+            <b-button variant="light" block><div class="prereqbuttontext">{{module}}</div></b-button>
+          </template>
+
+
+
 
 
     </div>
@@ -298,11 +290,6 @@ export default {
   border: #FF4040;
   border-radius: 2px;
   text-align: center;
-  /**
-  color: #fff;
-  text-emphasis-color: #E27979;
-  padding: 10px;
-  margin: 5px;**/
 }
 
 .lessons-table {
@@ -334,18 +321,6 @@ export default {
   font-size: 13px;
 }
 
-/**
-button {
-  background: #FFFFFF;
-  height: 38px;
-  width: 200px;
-  border-color: #007BFF;
-  padding-left: 0px;
-  padding-right: 0px;
-  margin: auto;
-}
-**/
-
 .prereqbuttontext {
   color: #007BFF; /**#007BFF;**/
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -356,12 +331,8 @@ button {
   padding-right: 3%;
 }
 
-.shiftright {
-  margin-left: 20px
-}
-
 .breakdownContainer {
-  margin-top: 3px
+
 }
 
 .nusmodbuttontext {
@@ -369,9 +340,6 @@ button {
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 400; /**330;**/
   font-size: 14px;
-  /**margin: auto;
-  padding-left: 3%;
-  padding-right: 3%;**/
 }
 
 .updatebuttontext {
@@ -382,6 +350,10 @@ button {
   margin: auto;
   padding-left: 3%;
   padding-right: 3%;
+}
+
+.shiftUp {
+  margin-top: -50px
 }
 
 </style>
