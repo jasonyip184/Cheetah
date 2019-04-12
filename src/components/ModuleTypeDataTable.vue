@@ -142,27 +142,27 @@
                         '       <li><h6> Expected hours per week:         </h6></li>'+
                         '       <li><div class="button-2">'+
                         '           <div class="eff-2"></div>'+
-                        '           Lecture: <a href="#/">'+ word1 +'</a>'+
+                        '           Lecture: '+ word1 +
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
                         '           <div class="eff-2"></div>'+
-                        '           Tutorial: <a href="#/">'+ word2 +'</a>'+
+                        '           Tutorial: '+ word2 +
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
                         '           <div class="eff-2"></div>'+
-                        '           Lab: <a href="#/">'+ word3 +'</a>'+
+                        '           Lab: '+ word3 +
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
                         '           <div class="eff-2"></div>'+
-                        '           Project: <a href="#/">'+ word4 +'</a>'+
+                        '           Project: '+ word4 +
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
                         '           <div class="eff-2"></div>'+
-                        '           Preparation: <a href="#/">'+ word5 +'</a>'+
+                        '           Preparation: '+ word5 +
                         '       </div></li>'+
                         '       <li><div class="button-2">'+
                         '           <div class="eff-2"></div>'+
-                        '           Graded: <a href="#/">'+ word6 +'</a>'+
+                        '           Graded: '+ word6 +
                         '       </div></li>'+
                         '   </ul>'+
                     '</div>'
